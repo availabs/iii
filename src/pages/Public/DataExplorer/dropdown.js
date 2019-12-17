@@ -11,15 +11,16 @@ const STICKYDROPDOWN = styled.div`
 class Dropdown extends React.Component{
     render(){
         return (
-            <div style={{display: 'flex', width:'100vw', justifyContent: 'space-evenly', background: '#535864'}}>
+            <div style={{display: 'flex', width:'100vw', justifyContent: 'space-evenly'}}>
                     <select
                         className='btn btn-white dropdown-toggle'
-                        style={{background: 'transparent', border:'none'}}
+                        style={{ border:'none'}}
                         id='year'
                         data-error="Please select a year"
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
-                                this.props.setState({year: e.target.value})
+                                console.log('e.target.value',e.target.value)
+                                this.props.setState({year: e.target.value, indicator: '',nativity:'',education:''})
                             }
                         }}
                         value={this.props.year}
@@ -34,13 +35,13 @@ class Dropdown extends React.Component{
                         data-error="Please select an indicator"
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
-                                this.props.setState({indicator: e.target.value})
+                                this.props.setState({indicator: e.target.value,nativity:'',education:''})
                             }
                         }}
                         value={this.props.indicator}
                     >
                         <option key={0} value={'none'}>--Select Indicator--</option>
-                        {this.props.year ?
+                        {this.props.year && config[this.props.year] ?
                             Object.keys(config[this.props.year]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }
@@ -52,13 +53,13 @@ class Dropdown extends React.Component{
                         data-error="Please select Nativity"
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
-                                this.props.setState({nativity: e.target.value})
+                                this.props.setState({nativity: e.target.value,education:''})
                             }
                         }}
                         value={this.props.nativity}
                     >
                         <option key={0} value={'none'}>--Select Nativity--</option>
-                        {this.props.year && this.props.indicator ?
+                        {this.props.year && this.props.indicator && config[this.props.year][this.props.indicator]?
                             Object.keys(config[this.props.year][this.props.indicator]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }
@@ -76,7 +77,7 @@ class Dropdown extends React.Component{
                         value={this.props.education}
                     >
                         <option key={0} value={'none'}>--Select Education Level--</option>
-                        {this.props.year && this.props.indicator && this.props.nativity ?
+                        {this.props.year && this.props.indicator && this.props.nativity && config[this.props.year][this.props.indicator][this.props.nativity] ?
                             Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }

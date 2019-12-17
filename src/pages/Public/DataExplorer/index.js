@@ -2,16 +2,20 @@ import React from 'react';
 import Element from "../../../components/light-admin/containers/Element";
 import DROPDOWN from './dropdown'
 import ElementBox from "../../../components/light-admin/containers/ElementBox";
-import {object} from "prop-types";
 import {connect} from "react-redux";
+import get from 'lodash.get'
+import {config, measures} from './data_config'
+
 class DataExplorer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            year: '',indicator: '',nativity:'',education:''
+        }
     }
     setStateOnChange(state){
-        this.setState(Object.assign(this.state, state))
+        this.setState(Object.assign(this.state, state, {}))
     }
     render() {
         console.log('state', this.state)
@@ -23,6 +27,11 @@ class DataExplorer extends React.Component {
                             {...this.state}
                             setState={this.setStateOnChange.bind(this)}
                         />
+
+                        selected state: {this.state.year} {this.state.indicator } {this.state.nativity} {this.state.education}
+                        {this.state.measure}
+
+                        selected file: {get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null)}
                     </ElementBox>
                 </div>
             </div>
