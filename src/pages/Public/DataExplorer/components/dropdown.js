@@ -30,7 +30,7 @@ class Dropdown extends React.Component{
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
                                 console.log('e.target.value',e.target.value)
-                                this.props.setState({year: e.target.value, indicator: '',nativity:'',education:''})
+                                this.props.setState({year: e.target.value/*, indicator: '',nativity:'',education:''*/})
                             }
                         }}
                         value={this.props.year}
@@ -46,7 +46,7 @@ class Dropdown extends React.Component{
                         data-error="Please select an indicator"
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
-                                this.props.setState({indicator: e.target.value,nativity:'',education:''})
+                                this.props.setState({indicator: e.target.value/*,nativity:'',education:''*/})
                             }
                         }}
                         value={this.props.indicator}
@@ -65,7 +65,7 @@ class Dropdown extends React.Component{
                         data-error="Please select Nativity"
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
-                                this.props.setState({nativity: e.target.value,education:''})
+                                this.props.setState({nativity: e.target.value/*,education:''*/})
                             }
                         }}
                         value={this.props.nativity}
@@ -113,6 +113,25 @@ class Dropdown extends React.Component{
                         <option key={0} value={'none'}>-- Measure --</option>
                         {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]}>{h}</option>)}
                     </select>
+                    {/*<div className="row" style={{paddingTop: '10px'}}>
+                        <div className="col-sm-2" style={{textAlign: 'center'}}>
+                            <div style={{width: '50px', paddingBottom: '2px', paddingTop: '0px'}}>
+                                <img className="img-fluid" src={"/img/doc_thumb.png"} />
+                            </div>
+                        </div>
+                        <div className="col-sm-2 color-light">
+                            <label> Download Report as PDF </label>
+                        </div>
+                    </div>*/}
+                <a className="el-buttons-list full-width"
+                   style={{cursor: 'pointer'}}
+                   onClick={() => {alert('Downloading...')}}>
+                    <img style={{width:'50px', paddingTop:'7px'}}
+                         className="img-fluid" src={"/img/doc_thumb.png"} />
+                    <div className="btn btn-bg">
+                        <span style={{color:'#fff'}}>Download Report as PDF</span>
+                    </div>
+                </a>
             </DIV>
         )
     }

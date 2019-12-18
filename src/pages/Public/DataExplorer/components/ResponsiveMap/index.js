@@ -54,6 +54,9 @@ export class ResponsiveMap extends React.Component {
         if (this.props.educationLevel !== nextProps.educationLevel) {
             this.updateColor(nextProps)
         }
+        if (this.props.year !== nextProps.year) {
+            this.updateColor(nextProps)
+        }
     }
 
     updateColor(props) {

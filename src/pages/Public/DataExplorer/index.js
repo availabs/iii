@@ -11,13 +11,22 @@ import ResponsiveMap from "./components/ResponsiveMap";
 import jsonData from './components/json'
 import regions from './components/geo/regions'
 import ny from './components/geo/ny_puma_geo.json'
+import {CONTAINER, TEXT} from "../theme/componentsNew";
+import styled from "styled-components";
 
 const Blues = ['rgb(5,48,97)', 'rgb(33,102,172)', 'rgb(67,147,195)', 'rgb(146,197,222)', 'rgb(209,229,240)',
     'rgb(253,219,199)', 'rgb(244,165,130)', 'rgb(214,96,77)', 'rgb(178,24,43)', 'rgb(103,0,31)']
 const gradeScale = d3.scaleOrdinal()
     .domain(['A', 'A-', 'B', 'B-', 'C', 'C-', 'D', 'D-', 'E'])
     .range(Blues);
-
+const LEGENDROW = styled.div`
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    -ms-flex-direction: row;
+                    flex-direction: row;
+                    `
 const cats = {
     'Overall': {
         name: 'Overall',
@@ -143,9 +152,62 @@ class DataExplorer extends React.Component {
             })
         }
     }
+    dataTable () {
+        if (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
+            !this.state.regionGeo || !this.state.measure) {
+            return <span />
+        }
+        let data = jsonData[this.state.year][
+            get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null)
+            ];
+        if (!data) return <div style={{ minHeight:'100vh' }}> Data not available for {this.state.indicator}</div>
+
+        let regionFilter = this.state.activeRegion &&
+        regions[this.state.activeRegion]
+            ? regions[this.state.activeRegion] : Object.keys(regions)
+        let rows = Object.keys(data)
+            .filter(region => regionFilter.indexOf(region) !== -1)
+            .sort((a, b) => {
+                console.log('sorting',data, a, this.state.measure, data[a][this.state.measure].Rank, data[b][this.state.measure].Rank, data[a][this.state.measure].Rank - data[b][this.state.measure].Rank)
+                return data[a][this.state.measure].Rank - data[b][this.state.measure].Rank
+            })
+            .map((region, i) => {
+                return (
+                    <tr key={region}>
+                        <td>{region}</td>
+                        {this.state.measure === 'Overall' ? null
+                            : <td>{this.numberFormat(data[region][this.state.measure].Ratio)}</td>}
+                        <td>{this.state.activeRegion ? data[region][this.state.measure].Rank : this.gradeFormat(data[region][this.state.measure].Grade) == 'N/A' ? 'N/A' : (i+1) }</td>
+                        <td>{this.gradeFormat(data[region][this.state.measure].Grade)}</td>
+                    </tr>
+                )
+            })
+
+        return (
+            <div style={{padding: 10}}>
+                <table className='table table-hover' style={{ backgroundColor: '#fff', marginTop: 40, }}>
+                    <thead>
+                    <tr>
+                        <th>Region</th>
+                        {
+                            calc
+                                .filter(header => {
+                                    return !(this.state.measure === 'Overall' && header === 'Ratio')
+                                })
+                                .map(header => <th key={header}>{header}</th>)
+                        }
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
     renderLegend (scale) {
-        if (!this.state.measure) return null
-        var colors = scale.domain().map(grade => {
+        if (!this.state.measure) return null;
+        let colors = scale.domain().map(grade => {
             return (
                 <div
                     key={grade}
@@ -154,7 +216,7 @@ class DataExplorer extends React.Component {
             )
         })
 
-        var grades = scale.domain().map(grade => {
+        let grades = scale.domain().map(grade => {
             return (
                 <div
                     key={grade}
@@ -169,36 +231,36 @@ class DataExplorer extends React.Component {
         return (
             <div className='legendContainer'>
                 <div className='row'>
-                    <div className='col-md-5' style={{ backgroundColor:'#efefef',minHeight:171, borderRadius: 5, padding:10 }}>
+                    <div className='col-sm-5' style={{minHeight:171, borderRadius: 5, padding:10 }}>
                         <h5>
                             {cats[this.state.measure].name}
                             <span style={{ float: 'right' }}>{this.state.activeRegion}</span>
                         </h5>
                         <br />
                         <div style={{ marginTop: -15 }}>
-                            <div className='legendRow'>
+                            <LEGENDROW>
                                 {colors}
-                            </div>
-                            <div className='legendRow'>
+                            </LEGENDROW>
+                            <LEGENDROW>
                                 {grades}
-                            </div>
+                            </LEGENDROW>
                         </div>
                         {cats[this.state.measure].desc}
                     </div>
-                    <div className='col-md-1' />
-                    <div className='col-md-6' style={{ backgroundColor:'#efefef', borderRadius: 5, padding:10 }}>
+                    <div className='col-sm-1' />
+                    <div className='col-sm-6' style={{borderRadius: 5, padding:10 }}>
                         <h4>{this.state.indicator}</h4>
-                        {['race'].indexOf(this.state.activeAnalysis) !== -1 ? <strong>Foreign Born people of color and Native Born white non-hispanic<br /></strong> : ''}
-                        {['race_women'].indexOf(this.state.activeAnalysis) !== -1? <strong>Foreign Born Women of color And Native Born Women white non-hispanic<br /></strong> : ''}
-                        {['nativity', 'nativity_women'].indexOf(this.state.activeAnalysis) !== -1 ? <strong>{}<br /></strong> : ''}
+                        {['race'].indexOf(this.state.indicator) !== -1 ? <strong>Foreign Born people of color and Native Born white non-hispanic<br /></strong> : ''}
+                        {['race_women'].indexOf(this.state.indicator) !== -1? <strong>Foreign Born Women of color And Native Born Women white non-hispanic<br /></strong> : ''}
+                        {['nativity', 'nativity_women'].indexOf(this.state.indicator) !== -1 ? <strong>{}<br /></strong> : ''}
 
-                        {this.state.activeAnalysis !== 'vulnerable' ?
+                        {this.state.indicator !== 'vulnerable' ?
                             (
                                 <span>
                                     <strong>
-                                        {education[this.state.education].name}<br />
+                                        {get(education, `${this.state.education}.name`, null)}<br />
                                     </strong>
-                                    {education[this.state.education].desc}
+                                    {get(education, `${this.state.education}.desc`, null)}
                                 </span>
                             )
                             : ''
@@ -209,7 +271,7 @@ class DataExplorer extends React.Component {
         )
     }
     mapClick (d) {
-        var nextRegion = null
+        let nextRegion = null
         d3.selectAll('.mapActive').classed('mapActive', false)
         if (this.state.activeRegion === d.properties.region) {
             nextRegion = null
@@ -226,36 +288,68 @@ class DataExplorer extends React.Component {
             activeRegion:nextRegion
         })
     }
+    calculateRanks (data) {
+        let regionsNew = Object.keys(data)
+            .filter(d => Object.keys(regions).indexOf(d) !== -1)
+        let pumas = Object.keys(data)
+            .filter(d => !Object.keys(regions).indexOf(d) !== -1 && d.indexOf('PUMA') !== -1)
+        let getData = function (reg, cat) {
+            return isNaN(+data[reg][cat].Score) ? -4 : +data[reg][cat].Score
+        }
+        Object.keys(cats).forEach(cat => {
+            let catSort = regionsNew.sort((a, b) => {
+                return getData(b, cat) - getData(a, cat)
+            })
+
+            catSort.forEach((reg, i) => {
+                data[reg][cat].Rank = i + 1
+            })
+
+            catSort = pumas.sort((a, b) => {
+                return getData(b, cat) - getData(a, cat)
+            })
+
+            catSort.forEach((reg, i) => {
+                let rank = data[reg][cat].Score.indexOf('#') !== -1 ? 'N/A' : i + 1
+                data[reg][cat].Rank = rank
+            })
+        })
+        return data
+    }
     renderMap () {
         if (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
             !this.state.regionGeo || !this.state.measure) {
             return <div style={{ minHeight:'100vh' }}> Loading ... {this.state.indicator}</div>
         }
-        console.log('data group1', jsonData)
-        var data = jsonData[this.state.year][
+        console.log('data new', jsonData,
+            this.state.year,this.state.education,
+            get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null)
+        )
+        let data = jsonData[this.state.year][
             get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null)
             ];
-        var regionGeo = {
+        if (!data) return <div style={{ minHeight:'100vh' }}> Data not available for {this.state.indicator}</div>;
+        this.calculateRanks(data);
+        let regionGeo = {
             'type': 'FeatureCollection',
             'features': []
         }
-        console.log('this.state', this.state)
         regionGeo.features = this.state.regionGeo.features
             .sort((a, b) => data[a.properties.region][this.state.measure].Rank - data[b.properties.region][this.state.measure].Rank)
             .map((d,i) => {
-                var regionGrade = data[d.properties.region] &&
+                let regionGrade = data[d.properties.region] &&
                 data[d.properties.region][this.state.measure] &&
                 data[d.properties.region][this.state.measure].Grade
-                    ? data[d.properties.region][this.state.measure].Grade : 'E'
+                    ? data[d.properties.region][this.state.measure].Grade : 'E';
 
                 // regionGrade = gradeScale.domain().indexOf(regionGrade) !== -1 ? regionGrade : 'E-'
-                d.properties.fillColor = regionGrade.includes('#') ? 'url(#crosshatch) #fff' : gradeScale(regionGrade)
-                d.properties.grade = this.gradeFormat(regionGrade)
-                d.properties.rank = this.gradeFormat(regionGrade) == 'N/A' ? 'N/A' : (i+1)
+                d.properties.fillColor = regionGrade.includes('#') ? 'url(#crosshatch) #fff' : gradeScale(regionGrade);
+                d.properties.grade = this.gradeFormat(regionGrade);
+                d.properties.rank = this.gradeFormat(regionGrade) === 'N/A' ? 'N/A' : (i+1);
                 return d
             });
 
-        var childGeo = {
+        let childGeo = {
             'type': 'FeatureCollection',
             'features': []
         }
@@ -264,8 +358,8 @@ class DataExplorer extends React.Component {
                 .filter(puma => regions[this.state.activeRegion] &&
                     regions[this.state.activeRegion].includes(puma.properties.NAMELSAD10))
                 .map(d => {
-                    var region = d.properties.NAMELSAD10
-                    var regionGrade = data[region] &&
+                    let region = d.properties.NAMELSAD10
+                    let regionGrade = data[region] &&
                     data[region][this.state.measure] &&
                     data[region][this.state.measure].Grade
                         ? data[region][this.state.measure].Grade : 'E-'
@@ -285,8 +379,9 @@ class DataExplorer extends React.Component {
                     click={this.mapClick}
                     activeRegion={this.state.activeRegion}
                     activeCategory={this.state.measure}
-                    activeAnalysis={this.state.activeAnalysis}
-                    educationLevel={this.state.educationLevel}
+                    activeAnalysis={this.state.indicator}
+                    educationLevel={this.state.education}
+                    year={this.state.year}
                     childGeo={childGeo}
                 />
             </div>
@@ -305,20 +400,55 @@ class DataExplorer extends React.Component {
                         {...this.state}
                         setState={this.setStateOnChange.bind(this)}
                     />
-                    <ElementBox>
-                        {
-                            (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
-                            !this.state.regionGeo || !this.state.measure) ?
-                             <div style={{ minHeight:'100vh' }}> Loading ... {this.state.indicator}</div> : (
-                                    <div>
-                                        {/*{this.renderLegend(gradeScale)}*/}
-                                        {this.renderMap()}
-                                    </div>
-                                )
+                    <div className='row'>
+                        <ElementBox>
+                            <div style={{display: 'flex',width: '100vw', justifyContent: 'center'}}>
+                                    {
+                                        (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
+                                            !this.state.measure) ?
+                                            <TEXT style={{color:'black', textTransform: 'uppercase'}}> Please make Selection to veiw report. </TEXT> :
+                                            <div style={{display:'flex'}}>
+                                                <TEXT style={{color:'black', textTransform: 'uppercase'}}>
+                                                    {get(config, `${this.state.year}.${this.state.indicator}.info`, null)}
+                                                </TEXT>
+                                            </div>
 
-                        }
+                                    }
 
-                    </ElementBox>
+                            </div>
+                        </ElementBox>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-6'>
+                            <ElementBox style={{height:'100%'}}>
+                                {
+                                    (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
+                                        !this.state.regionGeo || !this.state.measure) ?
+                                        <div> Loading ... {this.state.indicator}</div> : (
+                                            <div>
+                                                {this.renderLegend(gradeScale)}
+                                                {this.renderMap()}
+                                            </div>
+                                        )
+
+                                }
+                            </ElementBox>
+                        </div>
+
+                        <div className='col-sm-6'>
+                        <ElementBox style={{height:'100%'}}>
+                            {
+                                (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
+                                    !this.state.regionGeo || !this.state.measure) ?
+                                    <div> Loading ... {this.state.indicator}</div> : (
+                                        <div>
+                                            {this.dataTable()}
+                                        </div>
+                                    )
+                            }
+                        </ElementBox>
+                    </div>
+                    </div>
                 </div>
             </div>
         )

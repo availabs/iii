@@ -1,5 +1,6 @@
 import React from 'react';
 import {CONTAINER} from "../theme/componentsNew";
+import ElementBox from "../../../components/light-admin/containers/ElementBox";
 
 const background = '/img/Methodology.jpg';
 const backgroundCSS = {
@@ -24,7 +25,9 @@ class Methodology extends React.Component {
     render() {
         return (
             <div style={backgroundCSS}>
-                <img style={{width: '100vw'}} src={background}/>
+                <ElementBox style={{width:'100%', height:`calc('100%'-'100px)`, padding:0}}>
+                    <img style={{width: '100vw', boxShadow: '0px 1px 5px grey'}} src={background}/>
+                </ElementBox>
                 <CONTAINER style={{maxWidth: '100vw', marginBottom:'20px'}}>
                     <div style={{display:'flex', bottom:0,
                         width: '100vw',height:'100px',
