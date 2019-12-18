@@ -1,7 +1,7 @@
 import React from 'react';
 import Element from "../../../components/light-admin/containers/Element";
 import ElementBox from "../../../components/light-admin/containers/ElementBox";
-import DROPDOWN from "../DataExplorer/dropdown";
+import DROPDOWN from "../DataExplorer/components/dropdown";
 import {connect} from "react-redux";
 
 class DataSnapshots extends React.Component {

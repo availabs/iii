@@ -26,27 +26,27 @@ class Team extends React.Component {
     renderTeamMember({name, title1, title2, location, email, phone, desc}){
         return (
             <div>
-                <div style={{padding: '20px 40px 0px 40px',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    'alignItems': 'center'}}>
-                    <div style={{'textTransform': 'uppercase','letterSpacing': '2px'}}>
-                        <h5>{name} ({title1})</h5>
-                    </div>
-                    <div style={{flex: '0 0 220px', 'textAlign': 'right'}}>
-                        {email ? <div className='os-icon os-icon-mail' style={{padding:5}}>
-                            <a href={'mailto:DRefki@albany.edu'}>
-                                {email}
-                            </a>
-                        </div> : null}
-                        {phone ? <div className='os-icon os-icon-phone' style={{padding:5}}>
-                            <a href={'tel:+1' + phone}>
-                                {phone}
-                            </a>
-                        </div> : null}
-                    </div>
-                </div>
                 <ElementBox>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        'alignItems': 'center'}}>
+                        <div style={{'textTransform': 'uppercase','letterSpacing': '2px'}}>
+                            <h5>{name} ({title1})</h5>
+                        </div>
+                        <div style={{flex: '0 0 220px', 'textAlign': 'right'}}>
+                            {email ? <div className='os-icon os-icon-mail' style={{padding:5}}>
+                                <a href={'mailto:DRefki@albany.edu'}>
+                                    {email}
+                                </a>
+                            </div> : null}
+                            {phone ? <div className='os-icon os-icon-phone' style={{padding:5}}>
+                                <a href={'tel:+1' + phone}>
+                                    {phone}
+                                </a>
+                            </div> : null}
+                        </div>
+                    </div>
                     <div>
                         <TEXT style={{color:'#000', fontSize: 'inherit', paddingBottom: 0}}>
                             {title2}</TEXT>
