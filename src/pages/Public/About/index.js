@@ -167,7 +167,6 @@ class About extends React.Component {
     render() {
         let tab = get(this.props,`router.location.hash`, '#about');
         tab = tab === '' ? '#about' : tab
-        console.log('active tab', typeof tab, this.props.router.location)
         return (
             <div style={backgroundCSS} className='content-w'>
                 <div style={subSectionsCSS} className="os-tabs-controls content-w">

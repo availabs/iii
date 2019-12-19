@@ -94,8 +94,8 @@ class DataExplorer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            year: '2014',indicator: 'The Effects of Nativity Status',nativity:'Foreign-Born and Native-Born',measure: 'Overall',
-            education:'Bachelor’s Degree or More',
+            // year: '2014',indicator: 'The Effects of Nativity Status',nativity:'Foreign-Born and Native-Born', education:'Bachelor’s Degree or More',
+            year: '',indicator: '',nativity:'', education:'',
             activeRegions: null,
             geoData: null,
             childGeo: null,
@@ -106,17 +106,13 @@ class DataExplorer extends React.Component {
         this.renderLegend = this.renderLegend.bind(this)
     }
     componentDidMount () {
-        console.log('check this. component did mount')
         let geodata = ny;
-        console.log('geodata')
-        //if (err) console.log('error in file', err)
         let regionGeo = {
             'type': 'FeatureCollection',
             'features': []
         };
 
         regionGeo.features = Object.keys(regions).map(region => {
-            console.log('regions', region, geodata);
             return {
                 'type': 'Feature',
                 'properties': {
@@ -139,25 +135,20 @@ class DataExplorer extends React.Component {
         })
     }
     makePDF () {
-        console.log('downloading')
         let quotes = [
             //document.getElementById('DataViewer1'),
             //document.getElementById('DataViewer2'),
             document.getElementById('DataViewerMain')
         ];
-        console.log('all quotes', quotes)
         let images = []
         let nodes = []
         let pdf = new jsPDF('p', 'pt', 'letter')
         let allPromise = []
         quotes.forEach((q, q_i) => {
             let ele = q.getElementsByClassName('element-box')
-            console.log('changeCss', ele[0], ele[1], ele[2]);
             for(let tmpI = ele.length-1; tmpI >= 0; tmpI-- ){
                 //ele[tmpI].style.backgroundColor = 'transparent';
-                console.log('class list', tmpI, ele.length)
                 ele[tmpI].classList.replace('element-box', 'element-box-none')
-                console.log('style',ele[tmpI])
             }
 
 
@@ -166,13 +157,13 @@ class DataExplorer extends React.Component {
                 let parent = node.parentNode
 
                 let svg = node.innerHTML
-                console.log(node.width.baseVal.value, node.height.baseVal.value)
                 let image = new Image();
                 let open = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="'+ node.width.baseVal.value + '" height="' + node.height.baseVal.value + '">'
                 image.src = 'data:image/svg+xml,' + escape(open + svg + '</svg>')
                 parent.appendChild(image);
                 node.style.display = 'none'
-                document.getElementById('toolTipDiv').style.display = 'none'
+                if (document.getElementById('toolTipDiv'))
+                document.getElementById('toolTipDiv').style.display = 'none';
                 images.push(image)
                 nodes.push(node)
 
@@ -180,7 +171,6 @@ class DataExplorer extends React.Component {
                 image.onload = function() {
                     image.onload = function() {}
                     let canvas = document.createElement('canvas')
-                    console.log('lading ',image.width, image.height)
                     canvas.width = image.width;
                     canvas.height = image.height;
                     let context = canvas.getContext('2d');
@@ -198,11 +188,9 @@ class DataExplorer extends React.Component {
                         }*/
                         //allowTaint: true,
                         //! MAKE YOUR PDF
-                        console.log('canvas', canvas, `canvas${q_i}`)
                         let start_width = q.clientWidth * 1.5
                         //x += q.clientWidth;
                         let start_height = 1400
-                        console.log('export', q.clientHeight, ' > ', start_height)
                         for (let i = 0; i <= (q.clientHeight*2) / start_height; i++) {
                             //! This is all just html2canvas stuff
                             let srcImg = canvas
@@ -222,7 +210,6 @@ class DataExplorer extends React.Component {
                             // details on this usage of this function:
                             // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
                             ctx.drawImage(srcImg, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight)
-                            console.log('ctx', ctx)
                             // document.body.appendChild(canvas);
                             let canvasDataURL = window.onePageCanvas.toDataURL('image/png', 1.0)
 
@@ -237,7 +224,7 @@ class DataExplorer extends React.Component {
                             //! now we declare that we're working on that page
                             pdf.setPage(i + 1)
                             //! now we add content to that page!
-                            pdf.addImage(canvasDataURL, 'PNG', 10, 250, (width * (700 / width)), (height * 0.32))
+                            pdf.addImage(canvasDataURL, 'PNG', 10, 10, (width * (700 / width)), (height * 0.32))
                         }
                         //! after the for loop is finished running, we save the pdf.
                         nodes.forEach(node => {
@@ -246,7 +233,9 @@ class DataExplorer extends React.Component {
                         images.forEach(node => {
                             node.style.display = 'none'
                         })
-                        document.getElementById('toolTipDiv').style.display = 'block'
+                        if (document.getElementById('toolTipDiv'))
+                            document.getElementById('toolTipDiv').style.display = 'block';
+
                         let ele = q.getElementsByClassName('element-box-none')
                         for(let tmpI = ele.length-1; tmpI >= 0; tmpI-- ){
                             //ele[tmpI].style.backgroundColor = 'transparent';
@@ -294,7 +283,6 @@ class DataExplorer extends React.Component {
         let rows = Object.keys(data)
             .filter(region => regionFilter.indexOf(region) !== -1)
             .sort((a, b) => {
-                console.log('sorting',data, a, this.state.measure, data[a][this.state.measure].Rank, data[b][this.state.measure].Rank, data[a][this.state.measure].Rank - data[b][this.state.measure].Rank)
                 return data[a][this.state.measure].Rank - data[b][this.state.measure].Rank
             })
             .map((region, i) => {
@@ -447,10 +435,7 @@ class DataExplorer extends React.Component {
             !this.state.regionGeo || !this.state.measure) {
             return <div style={{ minHeight:'100vh' }}> Loading ... {this.state.indicator}</div>
         }
-        console.log('data new', jsonData,
-            this.state.year,this.state.education,
-            get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null)
-        )
+
         let data = jsonData[this.state.year][
             get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null)
             ];
@@ -508,6 +493,7 @@ class DataExplorer extends React.Component {
                     activeAnalysis={this.state.indicator}
                     educationLevel={this.state.education}
                     year={this.state.year}
+                    nativity={this.state.nativity}
                     childGeo={childGeo}
                 />
             </div>
@@ -518,7 +504,6 @@ class DataExplorer extends React.Component {
         this.setState(Object.assign(this.state, state, {}))
     }
     render() {
-        console.log('state', this.state)
         return (
             <div className='row' style={{marginTop:'15px'}}>
                 <div className='col-sm-12'>
@@ -585,7 +570,6 @@ class DataExplorer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('DE state', state)
     return {
         router: state.router
     };

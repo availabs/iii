@@ -46,6 +46,32 @@ const config = {};
         };
     });
 
+['Hispanic New Yorkers'].forEach(year => {
+        config[year] = {
+            'The Effects of Nativity Status' : {
+                info: 'Effects of nativity status on economic outcomes of Hispanic New Yorkers.',
+                'Foreign-Born Hispanic New Yorkers and Native-Born Hispanic New Yorkers': {
+                    'Bachelor’s Degree or More': 'group1',
+                    'High School Diploma / Some College': 'group2'
+                }
+            },
+            'The Effects of Race' : {
+                info: 'Effects of nativity status and race on economic outcomes of Hispanic foreign-born New Yorkers.',
+                'Foreign-Born Hispanic people of color and Foreign-Born white Hispanic': {
+                    'Bachelor’s Degree or More': 'group3',
+                    'High School Diploma / Some College': 'group4'
+                }
+            },
+            'The Effects of Gender' : {
+                info: 'Effects of gender on economic outcomes of Hispanic foreign-born New Yorkers..',
+                'All': {
+                    'Bachelor’s Degree or More': 'group9',
+                    'High School Diploma / Some College': 'group10'
+                }
+            }
+        };
+    });
+
  export default config
  export const measures = {
      'Overall':'Overall',
