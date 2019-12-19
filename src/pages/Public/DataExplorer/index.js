@@ -6,6 +6,8 @@ import * as d3 from 'd3'
 import * as topojson from 'topojson'
 import {connect} from "react-redux";
 import get from 'lodash.get'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf';
 import config,{measures} from './data_config'
 import ResponsiveMap from "./components/ResponsiveMap";
 import jsonData from './components/json'
@@ -92,7 +94,7 @@ class DataExplorer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            year: '2014',indicator: 'The Effects of Nativity Status',nativity:'Foreign-Born and Native-Born',
+            year: '2014',indicator: 'The Effects of Nativity Status',nativity:'Foreign-Born and Native-Born',measure: 'Overall',
             education:'Bachelor’s Degree or More',
             activeRegions: null,
             geoData: null,
@@ -135,6 +137,130 @@ class DataExplorer extends React.Component {
             childGeo: topojson.feature(geodata, geodata.objects.collection),
             regionGeo: regionGeo
         })
+    }
+    makePDF () {
+        console.log('downloading')
+        let quotes = [
+            //document.getElementById('DataViewer1'),
+            //document.getElementById('DataViewer2'),
+            document.getElementById('DataViewerMain')
+        ];
+        console.log('all quotes', quotes)
+        let images = []
+        let nodes = []
+        let pdf = new jsPDF('p', 'pt', 'letter')
+        let allPromise = []
+        quotes.forEach((q, q_i) => {
+            let ele = q.getElementsByClassName('element-box')
+            console.log('changeCss', ele[0], ele[1], ele[2]);
+            for(let tmpI = ele.length-1; tmpI >= 0; tmpI-- ){
+                //ele[tmpI].style.backgroundColor = 'transparent';
+                console.log('class list', tmpI, ele.length)
+                ele[tmpI].classList.replace('element-box', 'element-box-none')
+                console.log('style',ele[tmpI])
+            }
+
+
+            let svgElem = q.querySelectorAll('#mapSVG');
+            svgElem.forEach(function(node) {
+                let parent = node.parentNode
+
+                let svg = node.innerHTML
+                console.log(node.width.baseVal.value, node.height.baseVal.value)
+                let image = new Image();
+                let open = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="'+ node.width.baseVal.value + '" height="' + node.height.baseVal.value + '">'
+                image.src = 'data:image/svg+xml,' + escape(open + svg + '</svg>')
+                parent.appendChild(image);
+                node.style.display = 'none'
+                document.getElementById('toolTipDiv').style.display = 'none'
+                images.push(image)
+                nodes.push(node)
+
+
+                image.onload = function() {
+                    image.onload = function() {}
+                    let canvas = document.createElement('canvas')
+                    console.log('lading ',image.width, image.height)
+                    canvas.width = image.width;
+                    canvas.height = image.height;
+                    let context = canvas.getContext('2d');
+                    context.drawImage(image, 0, 0);
+                    image.src = canvas.toDataURL();
+                }
+            })
+            // At this point the container has no SVG, it only has HTML and Canvases.
+            window.scrollTo(0, 0);
+            allPromise.push(
+                html2canvas(q, {allowTaint: true})
+                    .then((canvas) =>  {
+                        /*if (q_i > 0) {
+                            pdf.addPage(612, 791) // 8.5" x 11" in pts (in*72)
+                        }*/
+                        //allowTaint: true,
+                        //! MAKE YOUR PDF
+                        console.log('canvas', canvas, `canvas${q_i}`)
+                        let start_width = q.clientWidth * 1.5
+                        //x += q.clientWidth;
+                        let start_height = 1400
+                        console.log('export', q.clientHeight, ' > ', start_height)
+                        for (let i = 0; i <= (q.clientHeight*2) / start_height; i++) {
+                            //! This is all just html2canvas stuff
+                            let srcImg = canvas
+                            let sX = 0
+                            let sY = start_height * i // start start_height pixels down for every new page
+                            let sWidth = start_width
+                            let sHeight = start_height
+                            let dX = 0
+                            let dY = 0
+                            let dWidth = start_width
+                            let dHeight = start_height + 200
+
+                            window.onePageCanvas = document.createElement('canvas')
+                            window.onePageCanvas.setAttribute('width', start_width)
+                            window.onePageCanvas.setAttribute('height', start_height)
+                            let ctx = window.onePageCanvas.getContext('2d')
+                            // details on this usage of this function:
+                            // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
+                            ctx.drawImage(srcImg, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight)
+                            console.log('ctx', ctx)
+                            // document.body.appendChild(canvas);
+                            let canvasDataURL = window.onePageCanvas.toDataURL('image/png', 1.0)
+
+                            let width = window.onePageCanvas.width
+                            let height = window.onePageCanvas.clientHeight
+
+                            //! If we're on anything other than the first page,
+                            // add another page
+                            if (i > 0) {
+                                pdf.addPage(612, 791) // 8.5" x 11" in pts (in*72)
+                            }
+                            //! now we declare that we're working on that page
+                            pdf.setPage(i + 1)
+                            //! now we add content to that page!
+                            pdf.addImage(canvasDataURL, 'PNG', 10, 250, (width * (700 / width)), (height * 0.32))
+                        }
+                        //! after the for loop is finished running, we save the pdf.
+                        nodes.forEach(node => {
+                            node.style.display = 'block'
+                        })
+                        images.forEach(node => {
+                            node.style.display = 'none'
+                        })
+                        document.getElementById('toolTipDiv').style.display = 'block'
+                        let ele = q.getElementsByClassName('element-box-none')
+                        for(let tmpI = ele.length-1; tmpI >= 0; tmpI-- ){
+                            //ele[tmpI].style.backgroundColor = 'transparent';
+                            ele[tmpI].classList.replace('element-box-none', 'element-box')
+                        }
+                    })
+            )
+
+        });
+
+        Promise.all(allPromise)
+            .then(() => pdf.save('immigration_index.pdf'))
+
+
     }
     numberFormat (val) {
         if (!val || val.indexOf('#') !== -1) return 'N/A'
@@ -399,10 +525,12 @@ class DataExplorer extends React.Component {
                     <DROPDOWN
                         {...this.state}
                         setState={this.setStateOnChange.bind(this)}
+                        onDownloadClick={this.makePDF.bind(this)}
                     />
-                    <div className='row'>
-                        <ElementBox>
-                            <div style={{display: 'flex',width: '100vw', justifyContent: 'center'}}>
+                    <div id='DataViewerMain'>
+                        <div className='row'>
+                            <ElementBox>
+                                <div style={{display: 'flex',width: '100vw', justifyContent: 'center'}} id='DataViewer1'>
                                     {
                                         (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
                                             !this.state.measure) ?
@@ -415,39 +543,40 @@ class DataExplorer extends React.Component {
 
                                     }
 
-                            </div>
-                        </ElementBox>
-                    </div>
-                    <div className='row'>
-                        <div className='col-sm-6'>
-                            <ElementBox style={{height:'100%'}}>
-                                {
-                                    (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
-                                        !this.state.regionGeo || !this.state.measure) ?
-                                        <div> Loading ... {this.state.indicator}</div> : (
-                                            <div>
-                                                {this.renderLegend(gradeScale)}
-                                                {this.renderMap()}
-                                            </div>
-                                        )
-
-                                }
+                                </div>
                             </ElementBox>
                         </div>
+                        <div className='row'>
+                            <div className='col-sm-6'>
+                                <ElementBox style={{height:'100%'}}>
+                                    {
+                                        (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
+                                            !this.state.regionGeo || !this.state.measure) ?
+                                            <div> Loading ... {this.state.indicator}</div> : (
+                                                <div id='DataViewer2' style={{height:'100%', padding:5}}>
+                                                    {this.renderLegend(gradeScale)}
+                                                    {this.renderMap()}
+                                                </div>
+                                            )
 
-                        <div className='col-sm-6'>
-                        <ElementBox style={{height:'100%'}}>
-                            {
-                                (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
-                                    !this.state.regionGeo || !this.state.measure) ?
-                                    <div> Loading ... {this.state.indicator}</div> : (
-                                        <div>
-                                            {this.dataTable()}
-                                        </div>
-                                    )
-                            }
-                        </ElementBox>
-                    </div>
+                                    }
+                                </ElementBox>
+                            </div>
+
+                            <div className='col-sm-6'>
+                                <ElementBox style={{height:'100%'}}>
+                                    {
+                                        (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
+                                            !this.state.regionGeo || !this.state.measure) ?
+                                            <div> Loading ... {this.state.indicator}</div> : (
+                                                <div id='DataViewer3'>
+                                                    {this.dataTable()}
+                                                </div>
+                                            )
+                                    }
+                                </ElementBox>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

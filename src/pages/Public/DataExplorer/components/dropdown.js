@@ -125,7 +125,9 @@ class Dropdown extends React.Component{
                     </div>*/}
                 <a className="el-buttons-list full-width"
                    style={{cursor: 'pointer'}}
-                   onClick={() => {alert('Downloading...')}}>
+                   onClick={() => {
+                       this.props.onDownloadClick()
+                   }}>
                     <img style={{width:'50px', paddingTop:'7px'}}
                          className="img-fluid" src={"/img/doc_thumb.png"} />
                     <div className="btn btn-bg">
