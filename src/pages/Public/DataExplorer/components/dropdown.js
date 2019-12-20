@@ -22,6 +22,7 @@ class Dropdown extends React.Component{
     render(){
         return (
             <DIV style={{display: 'flex', width:'100vw', justifyContent: 'space-evenly', backgroundColor: '#5a6a92', boxShadow: '0px 1px 5px grey', marginBottom: '7px'}}>
+                {this.props.showYear ?
                     <select
                         className='dropdown-toggle'
                         style={selectStyle}
@@ -36,8 +37,9 @@ class Dropdown extends React.Component{
                     >
                         <option key={0} value={'none'}>-- Year --</option>
                         {Object.keys(config).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)}
-                    </select>
+                    </select> : null}
 
+                {this.props.showIndicator ?
                     <select
                         className="btn-white dropdown-toggle"
                         style={selectStyle}
@@ -55,8 +57,9 @@ class Dropdown extends React.Component{
                             Object.keys(config[this.props.year]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }
-                    </select>
+                    </select> : null}
 
+                {this.props.showNativity ?
                     <select
                         className="btn-white dropdown-toggle"
                         style={selectStyle}
@@ -76,8 +79,9 @@ class Dropdown extends React.Component{
                                 .map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }
-                    </select>
+                    </select> : null}
 
+                {this.props.showEdu ?
                     <select
                         className="btn-white dropdown-toggle"
                         style={selectStyle}
@@ -95,8 +99,9 @@ class Dropdown extends React.Component{
                             Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }
-                    </select>
+                    </select> : null}
 
+                {this.props.showMeasure ?
                     <select
                         className="btn-white dropdown-toggle"
                         style={selectStyle}
@@ -111,23 +116,34 @@ class Dropdown extends React.Component{
                     >
                         <option key={0} value={'none'}>-- Measure --</option>
                         {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]}>{h}</option>)}
-                    </select>
+                    </select> : null}
 
-                <a className="el-buttons-list full-width"
-                   style={{cursor: 'pointer'}}
-                   onClick={() => {
-                       this.props.onDownloadClick()
-                   }}>
-                    <img style={{width:'50px', paddingTop:'7px'}}
-                         className="img-fluid" src={"/img/doc_thumb.png"} />
-                    <div className="btn btn-bg">
-                        <span style={{color:'#fff'}}>Download Report as PDF</span>
-                    </div>
-                </a>
+                {this.props.showDownload ?
+                    <a className="el-buttons-list full-width"
+                       style={{cursor: 'pointer'}}
+                       onClick={() => {
+                           this.props.onDownloadClick()
+                       }}>
+                        <img style={{width:'50px', paddingTop:'7px'}}
+                             className="img-fluid" src={"/img/doc_thumb.png"} />
+                        <div className="btn btn-bg">
+                            <span style={{color:'#fff'}}>Download Report as PDF</span>
+                        </div>
+                    </a> : null}
             </DIV>
         )
     }
 }
+
+Dropdown.defaultProps = {
+    showYear: true,
+    showIndicator: true,
+    showNativity: true,
+    showEdu: true,
+    showMeasure: true,
+    showDownload: true
+}
+
 const mapStateToProps = (state, ownProps) => {
     return {
         router: state.router
