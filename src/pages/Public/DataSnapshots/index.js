@@ -24,6 +24,10 @@ class DataSnapshots extends React.Component {
                 <div className='col-sm-12'>
                     <ElementBox>
                         <DROPDOWN
+                            showIndicator ={false}
+                            showNativity={false}
+                            showEdu={false}
+                            showDownload={false}
                             {...this.state}
                             setState={this.setStateOnChange.bind(this)}
                         />
