@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import config,{measures} from '../data_config'
+import config,{measures, chartmeasures} from '../data_config'
 import {connect} from "react-redux";
 const DIV = styled.div`
             * {
@@ -118,6 +118,23 @@ class Dropdown extends React.Component{
                         {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]}>{h}</option>)}
                     </select> : null}
 
+                    {this.props.showChartMeasure ?
+                    <select
+                        className="btn-white dropdown-toggle"
+                        style={selectStyle}
+                        id='measure'
+                        data-error="Please select measure"
+                        onChange={(e) => {
+                            if (e.target.value !== 'none') {
+                                this.props.setState({chartmeasure: e.target.value})
+                            }
+                        }}
+                        value={this.props.chartmeasure}
+                    >
+                        <option key={0} value={'none'}>-- Measure --</option>
+                        {chartmeasures.map((h,h_i) => <option key={h_i+1} value={measures[h]}>{h}</option>)}
+                    </select> : null}
+
                 {this.props.showDownload ?
                     <a className="el-buttons-list full-width"
                        style={{cursor: 'pointer'}}
@@ -141,6 +158,7 @@ Dropdown.defaultProps = {
     showNativity: true,
     showEdu: true,
     showMeasure: true,
+    showChartMeasure: true,
     showDownload: true
 }
 

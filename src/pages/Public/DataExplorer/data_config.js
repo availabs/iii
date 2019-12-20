@@ -84,4 +84,13 @@ const config = {};
      'Income Level for Full-Time Workers':'Income'
  };
 
+ export const chartmeasures = [
+     'Demographics',
+     'English Proficiency',
+     'Educational Attainment',
+     'Income',
+     'Poverty',
+     'Unemployment'
+ ];
+
 // year, indicator, nativity, education, measure

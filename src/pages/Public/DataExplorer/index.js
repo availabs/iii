@@ -511,6 +511,7 @@ class DataExplorer extends React.Component {
                         {...this.state}
                         setState={this.setStateOnChange.bind(this)}
                         onDownloadClick={this.makePDF.bind(this)}
+                        showChartMeasure={false}
                     />
                     <div id='DataViewerMain'>
                         <div className='row'>
