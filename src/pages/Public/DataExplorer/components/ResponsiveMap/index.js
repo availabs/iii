@@ -54,6 +54,9 @@ export class ResponsiveMap extends React.Component {
         if (this.props.educationLevel !== nextProps.educationLevel) {
             this.updateColor(nextProps)
         }
+        if (this.props.year !== nextProps.year || this.props.nativity !== nextProps.nativity) {
+            this.updateColor(nextProps)
+        }
     }
 
     updateColor(props) {
@@ -214,20 +217,22 @@ export class ResponsiveMap extends React.Component {
             <ToolTip top={this.state.top} left={this.state.left} show={this.state.show}>
                 <div style={{textAlign: 'center', fontSize: '1.1em', fontWeight: '600'}}>{this.state.info.region}</div>
                 <div style={{textAlign: 'center'}}>
-                    <div className='row'>
-                        <div className={this.state.info.rank === 'No Data' ? 'col-xs-12' : 'col-xs-6'}>
-                            <span style={{fontSize: '.75em', fontWeight: '400'}}>Grade</span> <br/>
-                            <span style={{fontSize: '2em', fontWeight: '600'}}>{this.state.info.grade}</span>
-                        </div>
-                        <div className='col-xs-6'>
+                    <div className='col-sm-12'>
+                        <div className='row'>
+                            <div className={this.state.info.rank === 'No Data' ? 'col-sm-12' : 'col-sm-6'}>
+                                <span style={{fontSize: '.75em', fontWeight: '400'}}>Grade</span> <br/>
+                                <span style={{fontSize: '2em', fontWeight: '600'}}>{this.state.info.grade}</span>
+                            </div>
+                            <div className='col-sm-6'>
                             <span style={{
                                 fontSize: '.75em',
                                 fontWeight: '400'
                             }}>{this.state.info.rank === 'No Data' ? '' : 'Rank'}</span> <br/>
-                            <span style={{
-                                fontSize: '2em',
-                                fontWeight: '600'
-                            }}>{this.state.info.rank === 'No Data' ? '' : this.state.info.rank}</span>
+                                <span style={{
+                                    fontSize: '2em',
+                                    fontWeight: '600'
+                                }}>{this.state.info.rank === 'No Data' ? '' : this.state.info.rank}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
