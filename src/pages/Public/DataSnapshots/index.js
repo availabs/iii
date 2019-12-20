@@ -28,6 +28,7 @@ class DataSnapshots extends React.Component {
                             showNativity={false}
                             showEdu={false}
                             showDownload={false}
+                            showMeasure={false}
                             {...this.state}
                             setState={this.setStateOnChange.bind(this)}
                         />
