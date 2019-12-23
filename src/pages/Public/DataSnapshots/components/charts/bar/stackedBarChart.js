@@ -3,6 +3,8 @@ import React from "react";
 import config from 'pages/Public/DataSnapshots/csv_config.js'
 import * as d3 from 'd3';
 import { connect } from 'react-redux';
+import Element from "../../../../../../components/light-admin/containers/Element";
+import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
 const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
@@ -17,7 +19,11 @@ class StackedBarChart extends React.Component{
         };
         this.transformData = this.transformData.bind(this)
     }
-
+    componentDidUpdate(oldProps){
+        if (oldProps.year[0] !== this.props.year[0]){
+            this.componentDidMount()
+        }
+    }
     componentDidMount(){
         this.transformData().then(d =>{
             this.setState({
@@ -114,32 +120,62 @@ class StackedBarChart extends React.Component{
                         FEMALE_DATA = files[1];
                         MALE_DATA.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
-                                axis_data_foreign.push({
-                                    "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']),
+                                if(parseFloat(item['BABS_'+type+'_Total']) && parseFloat(item['HS_'+type+'_Total']) < 1){
+                                    axis_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) * 100,
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']) * 100,
 
-                                })
-                                stack_data_foreign.push({
-                                    "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']),
+                                    })
+                                    stack_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) * 100,
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']) * 100,
 
-                                })
+                                    })
+                                }else{
+                                    axis_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']),
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']),
+
+                                    })
+                                    stack_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']),
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']),
+
+                                    })
+                                }
+
                             }
                         })
                         FEMALE_DATA.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
-                                axis_data_native.push({
-                                    "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']),
-                                    "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']),
-                                })
-                                stack_data_native.push({
-                                    "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']),
-                                    "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) ,
-                                })
+                                if(parseFloat(item['BABS_'+type+'_Total']) && parseFloat(item['HS_'+type+'_Total']) < 1){
+                                    axis_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']) * 100,
+                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) * 100,
+                                    })
+                                    stack_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']) * 100,
+                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) * 100 ,
+                                    })
+                                }else{
+                                    axis_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']),
+                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']),
+                                    })
+                                    stack_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']),
+                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) ,
+                                    })
+                                }
+
                             }
                         })
                         Object.values(axis_data_native).forEach(function (axis_data_native, i) {
@@ -218,32 +254,62 @@ class StackedBarChart extends React.Component{
 
                         FB_ALL_data.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
-                                axis_data_foreign.push({
-                                    "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']),
+                                if(parseFloat(item['BABS_'+type+'_Total']) && parseFloat(item['HS_'+type+'_Total']) < 1){
+                                    axis_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) * 100,
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']) * 100,
 
-                                })
-                                stack_data_foreign.push({
-                                    "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']),
+                                    })
+                                    stack_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) * 100,
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']) * 100,
 
-                                })
+                                    })
+                                }else{
+                                    axis_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']),
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']),
+
+                                    })
+                                    stack_data_foreign.push({
+                                        "region":item['puma'],
+                                        "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']),
+                                        "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']),
+
+                                    })
+                                }
+
                             }
                         })
                         NB_ALL_data.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
-                                axis_data_native.push({
-                                    "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_'+type+'_Total']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_'+type+'_Total']),
-                                })
-                                stack_data_native.push({
-                                    "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_'+type+'_Total']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_'+type+'_Total']) ,
-                                })
+                                if(parseFloat(item['BABS_'+type+'_Total']) && parseFloat(item['HS_'+type+'_Total']) < 1){
+                                    axis_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_Total']) * 100,
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_Total']) * 100,
+                                    })
+                                    stack_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_Total']) * 100,
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_Total'])* 100,
+                                    })
+                                }else{
+                                    axis_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_Total']),
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_Total']),
+                                    })
+                                    stack_data_native.push({
+                                        "region":item['puma'],
+                                        "College Degree or better native":-parseFloat(item['BABS_'+type+'_Total']),
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_Total']) ,
+                                    })
+                                }
+
                             }
                         })
                         Object.values(axis_data_native).forEach(function (axis_data_native, i) {
@@ -274,10 +340,11 @@ class StackedBarChart extends React.Component{
     render(){
         const style={
             height: 400,
-            width: 1000
+            width: 1000,
+            padding: 20
         };
         return (
-            <div style={style}>
+            <ElementBox style={style}>
                 <h6 style={{textAlign:'center'}}>{this.props.title}{this.props.year}</h6>
                 {this.props.type.includes('Avg_PINCP') ?
                     <ResponsiveBar
@@ -432,8 +499,7 @@ class StackedBarChart extends React.Component{
                         labelSkipWidth={16}
                         labelSkipHeight={16}
                         labelFormat=".0s"
-                        maxValue={70}
-                        minValue={-70}
+
                         enableGridX={true}
                         enableGridY={true}
                         enableLabel={false}
@@ -497,7 +563,7 @@ class StackedBarChart extends React.Component{
                         }
                     />
                 }
-            </div>
+            </ElementBox>
 
         )
 

@@ -3,6 +3,7 @@ import React from "react";
 import config from 'pages/Public/DataSnapshots/csv_config.js'
 import * as d3 from 'd3';
 import { connect } from 'react-redux';
+import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
 const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
@@ -19,6 +20,12 @@ class PieChart extends React.Component{
         this.transformData = this.transformData.bind(this)
     }
 
+    componentDidUpdate(oldProps){
+        if (oldProps.year[0] !== this.props.year[0]){
+            this.componentDidMount()
+        }
+    }
+
     componentDidMount(){
         this.transformData().then(d =>{
             this.setState({
@@ -29,42 +36,72 @@ class PieChart extends React.Component{
 
     transformData(){
         let FB_ALL_CSV = '';
+        let FB_Hispanic_POC_csv = ''
 
         let FB_ALL_data = [];
+        let FB_hispanic_POC_data = [];
 
         let axis_data = []
 
         config[this.props.year][this.props.type].forEach(item =>{
-                if(item[this.props.nativity[0]]) {
+                if(this.props.nativity[0] === 'Foreign Born') {
                     FB_ALL_CSV = item[this.props.nativity[0]]
                     //NB_ALL_CSV = item[this.props.nativity[1]]
+                }
+                else if(this.props.nativity[0] === 'Foreign Born Hispanic People of Color'){
+                    FB_Hispanic_POC_csv = item[this.props.nativity[0]]
                 }
 
         });
         let type = this.props.type[0]
+            if(this.props.nativity[0] === 'Foreign Born'){
+                return Promise.all([d3.csv(FB_ALL_CSV)])
+                    .then(function(files) {
+                        FB_ALL_data = files[0];
+                        //NB_ALL_data = files[1];
 
-            // write here
-            return Promise.all([d3.csv(FB_ALL_CSV)])
-                .then(function(files) {
-                    FB_ALL_data = files[0];
-                    //NB_ALL_data = files[1];
+                        FB_ALL_data.forEach((item,i) =>{
+                            if(regions.includes(item['puma'])){
+                                axis_data.push({
+                                    "region":item['puma'],
+                                    "id": item['puma'],
+                                    "label": item['puma'],
+                                    "value": item['Percentage_mf_t'],
+                                    "color": "hsl(221, 70%, 50%)"
+                                })
+                            }
+                        })
 
-                    FB_ALL_data.forEach((item,i) =>{
-                        if(regions.includes(item['puma'])){
-                            axis_data.push({
-                                "region":item['puma'],
-                                "id": item['puma'],
-                                "label": item['puma'],
-                                "value": item['Percentage_mf_t'],
-                                "color": "hsl(221, 70%, 50%)"
-                            })
-                        }
+                        return (axis_data)
+                    }).catch(function(err) {
+                        // handle error here
                     })
-                    console.log('axis_data',axis_data)
-                    return (axis_data)
-                }).catch(function(err) {
-                    // handle error here
-                })
+            }
+            if(this.props.nativity[0] === 'Foreign Born Hispanic People of Color'){
+                return Promise.all([d3.csv(FB_Hispanic_POC_csv)])
+                    .then(function(files) {
+                        FB_hispanic_POC_data = files[0];
+                        //NB_ALL_data = files[1];
+
+                        FB_hispanic_POC_data.forEach((item,i) =>{
+                            if(regions.includes(item['puma'])){
+                                axis_data.push({
+                                    "region":item['puma'],
+                                    "id": item['puma'],
+                                    "label": item['puma'],
+                                    "value": item['Percentage_mf_t'],
+                                    "color": "hsl(221, 70%, 50%)"
+                                })
+                            }
+                        })
+
+                        return (axis_data)
+                    }).catch(function(err) {
+                        // handle error here
+                    })
+            }
+            // write here
+
 
 
     }
@@ -76,7 +113,7 @@ class PieChart extends React.Component{
             width: 500
         };
         return (
-            <div style={style}>
+            <ElementBox style={style}>
                 <h6 style={{textAlign:'center'}}>{this.props.title}{this.props.year}</h6>
                 <ResponsivePie
                     data={this.state.data}
@@ -123,7 +160,7 @@ class PieChart extends React.Component{
                     ]}
 
                 />
-            </div>
+            </ElementBox>
 
         )
 
