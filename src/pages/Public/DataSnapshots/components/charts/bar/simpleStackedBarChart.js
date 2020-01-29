@@ -3,6 +3,7 @@ import React from "react";
 import config from 'pages/Public/DataSnapshots/csv_config.js'
 import * as d3 from 'd3';
 import { connect } from 'react-redux';
+import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
 const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
@@ -17,6 +18,12 @@ class SimpleStackedBarChart extends React.Component{
             data : []
         };
         this.transformData = this.transformData.bind(this)
+    }
+
+    componentDidUpdate(oldProps){
+        if (oldProps.year[0] !== this.props.year[0]){
+            this.componentDidMount()
+        }
     }
 
     componentDidMount(){
@@ -105,7 +112,7 @@ class SimpleStackedBarChart extends React.Component{
             width: 1000
         };
         return (
-            <div style={style}>
+            <ElementBox style={style}>
                 <h6 style={{textAlign:'center'}}>{this.props.title}{this.props.year}</h6>
                 {this.props.nativity[0].includes('Male') ?
                     <ResponsiveBar
@@ -178,7 +185,7 @@ class SimpleStackedBarChart extends React.Component{
 
                 }
 
-            </div>
+            </ElementBox>
 
         )
 

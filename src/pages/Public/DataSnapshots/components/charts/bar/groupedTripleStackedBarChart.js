@@ -3,6 +3,7 @@ import React from "react";
 import config from 'pages/Public/DataSnapshots/csv_config.js'
 import * as d3 from 'd3';
 import { connect } from 'react-redux';
+import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
 const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
@@ -17,6 +18,12 @@ class GroupedTripleStackedBarChart extends React.Component{
             data : []
         };
         this.transformData = this.transformData.bind(this)
+    }
+
+    componentDidUpdate(oldProps){
+        if (oldProps.year[0] !== this.props.year[0]){
+            this.componentDidMount()
+        }
     }
 
     componentDidMount(){
@@ -178,7 +185,7 @@ class GroupedTripleStackedBarChart extends React.Component{
             width: 1000
         };
         return (
-            <div style={style}>
+            <ElementBox style={style}>
                 <h6 style={{textAlign:'center'}}>{this.props.title}{this.props.year}</h6>
                     <ResponsiveBar
                         data={this.state.data}
@@ -297,7 +304,7 @@ class GroupedTripleStackedBarChart extends React.Component{
                         tooltipFormat={value => `${Math.abs(value)}` + '%'
                         }
                     />
-            </div>
+            </ElementBox>
 
         )
 

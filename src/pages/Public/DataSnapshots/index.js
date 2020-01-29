@@ -7,11 +7,16 @@ import StackedBarChart from "./components/charts/bar/stackedBarChart";
 import GroupedTripleStackedBarChart from "./components/charts/bar/groupedTripleStackedBarChart";
 import PieChart from "./components/charts/pie/pieChart";
 import SimpleStackedBarChart from "./components/charts/bar/simpleStackedBarChart";
+import {TEXT} from "../theme/componentsNew";
+import get from "lodash.get";
+import config from "../DataExplorer/data_config";
 class DataSnapshots extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            year : '',
+            chartmeasure:''
         }
     }
 
@@ -20,9 +25,8 @@ class DataSnapshots extends React.Component {
     }
     render() {
         return (
-            <div className='row'>
+            <div className='row' style={{marginTop:'15px'}}>
                 <div className='col-sm-12'>
-                    <ElementBox>
                         <DROPDOWN
                             showIndicator ={false}
                             showNativity={false}
@@ -32,66 +36,220 @@ class DataSnapshots extends React.Component {
                             {...this.state}
                             setState={this.setStateOnChange.bind(this)}
                         />
-                    </ElementBox>
-                    {/*Unemployment*/}
-                    <StackedBarChart type={['UnEmp']} nativity={["Foreign Born","Native Born"]} year={[2014]} title={'Unemployment rate (%) of Foreign(English Proficient) and Native Born -'}/>
-                    <StackedBarChart type={['UnEmp']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
-                    year={[2014]}
-                    title={'Unemployment rate (%) of Foreign Born people of color(English proficient) and Native Born White Non Hispanic - '}/>
-                    <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Male","Foreign Born Female"]}
-                                     year={[2014]}
-                                     title={'Unemployment rate (%) of Foreign Born (English proficient) both Male and Female - '}/>
 
-                    {/* Average Income*/}
-                    <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born","Native Born"]} year={[2014]}
-                                     title={'Income level of Foreign(English Proficient) and Native born - '}/>
-                    <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
-                                     year={[2014]}
-                                     title={'Income level of Foreign born prople of color(English Proficient) and Native born white non hispanic - '}/>
-                    <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Male","Foreign Born Female"]}
-                                     year={[2014]}
-                                     title={'Income level of Foreign(English Proficient) born Male and Female  - '}/>
-                    {/*Poverty*/}
-                    <StackedBarChart type={['Poverty']} nativity={["Foreign Born","Native Born"]} year={[2014]}
-                                     title={'Poverty rate (%) of Foreign(English Proficient) and Native born  - '}/>
-                    <StackedBarChart type={['Poverty']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
-                                     year={[2014]}
-                                     title={'Poverty rate (%) of Foreign born people of color(English Proficient) and Native born white non hispanic - '}/>
-                    <StackedBarChart type={['Poverty']} nativity={["Foreign Born Male","Foreign Born Female"]}
-                                     year={[2014]}
-                                     title={'Poverty rate (%) of Foreign(English Proficient) born Male and Female  - '}/>
-                    {/*Educational Attainment*/}
-                    <GroupedTripleStackedBarChart
-                        type={['Edu_percent']} nativity={["Foreign Born","Native Born"]} year={[2014]}
-                        title={'% of Educational Attainment of Foreign(English Proficient) and Native born - '}
-                    />
-                    <GroupedTripleStackedBarChart type={['Edu_percent']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
-                                     year={[2014]}
-                                     title={'% of Educational Attainment of Foreign born people of color(English Proficient) and Native born white non hispanic - '}/>
-                    <GroupedTripleStackedBarChart type={['Edu_percent']} nativity={["Foreign Born Male","Foreign Born Female"]}
-                                     year={[2014]}
-                                     title={'% of Educational Attainment of  Foreign(English Proficient) born Male and Female  - '}/>
-                    {/*Demographics*/}
-                    <PieChart
-                        type={['Demographics']} year={[2014]}
-                        nativity={["Foreign Born"]}
-                        title={'Foreign born population across New York state region - '}
-                    />
-                    {/*English Proficiency*/}
-                    <SimpleStackedBarChart
-                        type={['Eng_Prof']} year ={[2014]}
-                        nativity={["Foreign Born","Foreign Born People of Color"]}
-                        title={'English Proficiency (%) among Foreign born residents across regions of New York state - '}
-                    />
-                    <br/>
-                    <SimpleStackedBarChart
-                    type={["Eng_Prof"]} year ={[2014]}
-                    nativity={["Foreign Born Male","Foreign Born Female"]}
-                    title={'English Proficiency (%) among Foreign born Men and Women of New York state - '}
-                    />
+                    {
+                        this.state.year === '' || this.state.chartmeasure === '' ?
+                            <ElementBox>
+                                <div style={{display: 'flex',width: '100vw', justifyContent: 'center'}}>
+                                    {
+                                        <TEXT style={{color:'black', textTransform: 'uppercase'}}> Please make Selection to view charts. </TEXT>
+
+                                    }
+
+                                </div>
+                            </ElementBox> :
+                            <div>
+                                {/*Unemployment*/}
+                                {
+                                    ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Unemployment' ?
+                                        <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                            <StackedBarChart type={['UnEmp']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]} title={'Unemployment rate (%) of Foreign(English Proficient) and Native Born -'}/>
+                                            <StackedBarChart type={['UnEmp']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
+                                                             year={[this.state.year]}
+                                                             title={'Unemployment rate (%) of Foreign Born people of color(English proficient) and Native Born White Non Hispanic - '}/>
+                                            <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Male","Foreign Born Female"]}
+                                                             year={[this.state.year]}
+                                                             title={'Unemployment rate (%) of Foreign Born (English proficient) both Male and Female - '}/>
+                                        </div>
+                                        :
+                                        this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === 'Unemployment' ?
+                                            <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                                <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
+                                                                 title={'Unemployment rate (%) of Foreign(English Proficient) Hispanic and Native Born Hispanic New Yorkers-'}/>
+                                                <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
+                                                                 year={[this.state.year]}
+                                                                 title={'Unemployment rate (%) of Foreign Born Hispanic people of color(English proficient) and Foreign Born White Non Hispanic - '}/>
+                                                <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
+                                                                 year={[this.state.year]}
+                                                                 title={'Unemployment rate (%) of Foreign Born Hispanic (English proficient) both Male and Female - '}/>
+                                            </div>
+                                            :
+                                        null
+                                }
+                                {/* Average Income*/}
+                                {
+                                    ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Income' ?
+                                        <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                            <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]}
+                                                             title={'Income level of Foreign(English Proficient) and Native born - '}/>
+                                            <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
+                                                             year={[this.state.year]}
+                                                             title={'Income level of Foreign born prople of color(English Proficient) and Native born white non hispanic - '}/>
+                                            <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Male","Foreign Born Female"]}
+                                                             year={[this.state.year]}
+                                                             title={'Income level of Foreign(English Proficient) born Male and Female  - '}/>
+                                        </div>
+                                        :
+                                        this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === 'Income'?
+                                            <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                                <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
+                                                                 title={'Income level of Foreign(English Proficient) born Hispanic and Native born Hispanic- '}/>
+                                                <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
+                                                                 year={[this.state.year]}
+                                                                 title={'Income level of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}/>
+                                                <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
+                                                                 year={[this.state.year]}
+                                                                 title={'Income level of Foreign(English Proficient) born Hispanic Male and Female  - '}/>
+                                            </div>
+                                            :
+                                        null
+                                }
+
+                                {/*Poverty*/}
+                                {
+                                    ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Poverty' ?
+                                        <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                            <StackedBarChart type={['Poverty']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]}
+                                                             title={'Poverty rate (%) of Foreign(English Proficient) and Native born  - '}/>
+                                            <StackedBarChart type={['Poverty']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
+                                                             year={[this.state.year]}
+                                                             title={'Poverty rate (%) of Foreign born people of color(English Proficient) and Native born white non hispanic - '}/>
+                                            <StackedBarChart type={['Poverty']} nativity={["Foreign Born Male","Foreign Born Female"]}
+                                                             year={[this.state.year]}
+                                                             title={'Poverty rate (%) of Foreign(English Proficient) born Male and Female  - '}/>
+                                        </div>
+                                        :
+                                        this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === 'Poverty'?
+                                            <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                                <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
+                                                                 title={'Poverty rate (%) of Foreign(English Proficient) and Native born Hispanic New Yorkers  - '}/>
+                                                <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
+                                                                 year={[this.state.year]}
+                                                                 title={'Poverty rate (%) of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}/>
+                                                <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
+                                                                 year={[this.state.year]}
+                                                                 title={'Poverty rate (%) of Foreign(English Proficient) born Hispanic Male and Female  - '}/>
+                                            </div>
+                                            :
+                                        null
+                                }
+
+                                {/*Educational Attainment*/}
+                                {
+                                    ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Educational Attainment' ?
+                                        <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                            <GroupedTripleStackedBarChart
+                                                type={['Edu_percent']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]}
+                                                title={'% of Educational Attainment of Foreign(English Proficient) and Native born - '}
+                                            />
+                                            <GroupedTripleStackedBarChart type={['Edu_percent']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
+                                                                          year={[this.state.year]}
+                                                                          title={'% of Educational Attainment of Foreign born people of color(English Proficient) and Native born white non hispanic - '}/>
+                                            <GroupedTripleStackedBarChart type={['Edu_percent']} nativity={["Foreign Born Male","Foreign Born Female"]}
+                                                                          year={[this.state.year]}
+                                                                          title={'% of Educational Attainment of  Foreign(English Proficient) born Male and Female  - '}/>
+                                        </div>
+                                        :
+                                        this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === "Educational Attainment" ?
+                                            <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                                <GroupedTripleStackedBarChart
+                                                    type={['Edu_percent']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
+                                                    title={'% of Educational Attainment of Foreign(English Proficient) and Native born Hispanic New Yorkers - '}
+                                                />
+                                                <GroupedTripleStackedBarChart type={['Edu_percent']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
+                                                                              year={[this.state.year]}
+                                                                              title={'% of Educational Attainment of Foreign born Hispanic people of color(English Proficient) and Foreign  born white non hispanic - '}/>
+                                                <GroupedTripleStackedBarChart type={['Edu_percent']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
+                                                                              year={[this.state.year]}
+                                                                              title={'% of Educational Attainment of  Foreign(English Proficient) born  Hispanic Male and Female  - '}/>
+                                            </div>
+                                            :
+                                            null
+
+                                }
+                                {/*Demographics*/}
+                                {
+                                    ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Demographics' ?
+                                        <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                            <PieChart
+                                                type={['Demographics']} year={[this.state.year]}
+                                                nativity={["Foreign Born"]}
+                                                title={'Foreign born population across New York state region - '}
+                                            />
+                                        </div>
+                                        :
+                                        this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === 'Demographics' ?
+                                            <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                                <div>
+                                                    <PieChart
+                                                        type={['Demographics']} year={[this.state.year]}
+                                                        nativity={["Foreign Born"]}
+                                                        title={'Foreign born Hispanic population across New York state region - '}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <PieChart
+                                                        type={['Demographics']} year={[this.state.year]}
+                                                        nativity={["Foreign Born Hispanic People of Color"]}
+                                                        title={'Foreign born Hispanic People of Color population across New York state region - '}
+                                                    />
+                                                </div>
+                                            </div>
+                                            :
+                                            null
+                                }
+
+                                {/*English Proficiency*/}
+                                {
+                                    ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'English Proficiency' ?
+                                        <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                            <SimpleStackedBarChart
+                                                type={['Eng_Prof']} year ={[this.state.year]}
+                                                nativity={["Foreign Born","Foreign Born People of Color"]}
+                                                title={'English Proficiency (%) among Foreign born residents across regions of New York state - '}
+                                            />
+                                            <br/>
+                                            <SimpleStackedBarChart
+                                                type={["Eng_Prof"]} year ={[this.state.year]}
+                                                nativity={["Foreign Born Male","Foreign Born Female"]}
+                                                title={'English Proficiency (%) among Foreign born Men and Women of New York state - '}
+                                            />
+                                        </div>
+                                        :
+                                        this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === 'English Proficiency' ?
+                                            <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                                <SimpleStackedBarChart
+                                                    type={['Eng_Prof']} year ={[this.state.year]}
+                                                    nativity={["Foreign Born Hispanic","Native Born Hispanic"]}
+                                                    title={'English Proficiency (%) among Foreign born Hispanic and Native born Hispanic residents across regions of New York state - '}
+                                                />
+                                                <br/>
+                                                <SimpleStackedBarChart
+                                                    type={["Eng_Prof"]} year ={[this.state.year]}
+                                                    nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
+                                                    title={'English Proficiency (%) among Foreign born Hispanic People of color and Foreign Born White Non Hispanic New York state - '}
+                                                />
+                                                <br/>
+                                                <SimpleStackedBarChart
+                                                    type={["Eng_Prof"]} year ={[this.state.year]}
+                                                    nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
+                                                    title={'English Proficiency (%) among Foreign born Hispanic Men and Women of New York state - '}
+                                                />
+                                            </div>
+                                            :
+                                        null
+                                }
+
+                                }
+                            </div>
+
+                    }
+
+
                 </div>
             </div>
         )
+
     }
 }
 

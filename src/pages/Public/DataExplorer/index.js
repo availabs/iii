@@ -520,7 +520,7 @@ class DataExplorer extends React.Component {
                                     {
                                         (!get(config, `${this.state.year}.${this.state.indicator}.${this.state.nativity}.${this.state.education}`, null) ||
                                             !this.state.measure) ?
-                                            <TEXT style={{color:'black', textTransform: 'uppercase'}}> Please make Selection to veiw report. </TEXT> :
+                                            <TEXT style={{color:'black', textTransform: 'uppercase'}}> Please make Selection to view report. </TEXT> :
                                             <div style={{display:'flex'}}>
                                                 <TEXT style={{color:'black', textTransform: 'uppercase'}}>
                                                     {get(config, `${this.state.year}.${this.state.indicator}.info`, null)}
