@@ -15,8 +15,8 @@ const config = {};
             'The Effects of Race' : {
                 info: 'Effects of nativity status and race on economic outcomes of foreign-born New Yorkers.',
                 'Foreign-Born people of color and Foreign-Born white non-hispanic': {
-                    'Bachelor’s Degree or More': 'group3',
-                    'High School Diploma / Some College': 'group4'
+                    'Bachelor’s Degree or More': 'group12',
+                    'High School Diploma / Some College': 'group13'
                 },
                 'Foreign-Born Women of color and Foreign-born non-hispanic white women': {
                     'Bachelor’s Degree or More': 'group7',
@@ -26,8 +26,8 @@ const config = {};
             'The Effects of Race and Nativity' : {
                 info: 'Effects of nativity status and race on economic outcomes of foreign-born New Yorkers.',
                 'Foreign-Born people of color and Native-Born non-hispanic white': {
-                    'Bachelor’s Degree or More': 'group12',
-                    'High School Diploma / Some College': 'group13'
+                    'Bachelor’s Degree or More': 'group3',
+                    'High School Diploma / Some College': 'group4'
                 }
             },
             'The Effects of Gender' : {
