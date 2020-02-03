@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
-const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
+const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region'];
 
 class PieChart extends React.Component{
@@ -109,8 +109,8 @@ class PieChart extends React.Component{
 
     render(){
         const style={
-            height: 500,
-            width: 500
+            height: '100vh',
+            width: '95vw'
         };
         return (
             <ElementBox style={style}>
@@ -124,18 +124,18 @@ class PieChart extends React.Component{
                     colors={{ scheme: 'nivo' }}
                     borderWidth={1}
                     borderColor={{ from: 'color', modifiers: [ [ 'darker', 0.2 ] ] }}
-                    radialLabelsSkipAngle={2}
+                    radialLabelsSkipAngle={5}
                     radialLabelsTextXOffset={8}
                     radialLabelsTextColor="#333333"
                     radialLabelsLinkOffset={5}
-                    radialLabelsLinkDiagonalLength={20}
-                    radialLabelsLinkHorizontalLength={0}
+                    radialLabelsLinkDiagonalLength={40}
+                    radialLabelsLinkHorizontalLength={40}
                     radialLabelsLinkStrokeWidth={1}
                     radialLabelsLinkColor={{ from: 'color' }}
                     slicesLabelsSkipAngle={10}
                     slicesLabelsTextColor="#333333"
                     enableSlicesLabels={false}
-                    enableRadialLabels={false}
+                    enableRadialLabels={true}
                     motionStiffness={90}
                     motionDamping={15}
                     legend={[

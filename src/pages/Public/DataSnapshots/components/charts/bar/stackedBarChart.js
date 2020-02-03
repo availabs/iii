@@ -7,7 +7,7 @@ import Element from "../../../../../../components/light-admin/containers/Element
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
-const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
+const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region']
 class StackedBarChart extends React.Component{
     constructor(props) {
@@ -90,12 +90,12 @@ class StackedBarChart extends React.Component{
                                 axis_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f']),
-                                    "High School Diploma some college native":-parseFloat(item['BABS_Avg_PINCP_f']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_m']),
-                                    "High School Diploma some college native":-parseFloat(item['BABS_Avg_PINCP_m']) ,
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_m']) ,
                                 })
                             }
                         })
@@ -156,23 +156,23 @@ class StackedBarChart extends React.Component{
                                     axis_data_native.push({
                                         "region":item['puma'],
                                         "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']) * 100,
-                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) * 100,
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_F']) * 100,
                                     })
                                     stack_data_native.push({
                                         "region":item['puma'],
                                         "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']) * 100,
-                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) * 100 ,
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_F']) * 100 ,
                                     })
                                 }else{
                                     axis_data_native.push({
                                         "region":item['puma'],
                                         "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']),
-                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']),
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_F']),
                                     })
                                     stack_data_native.push({
                                         "region":item['puma'],
                                         "College Degree or better native":-parseFloat(item['BABS_'+type+'_F']),
-                                        "High School Diploma some college native":-parseFloat(item['BABS_'+type+'_F']) ,
+                                        "High School Diploma some college native":-parseFloat(item['HS_'+type+'_F']) ,
                                     })
                                 }
 

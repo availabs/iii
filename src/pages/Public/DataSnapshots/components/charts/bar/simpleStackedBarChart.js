@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
-const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
+const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region'];
 
 class SimpleStackedBarChart extends React.Component{
@@ -71,7 +71,6 @@ class SimpleStackedBarChart extends React.Component{
                             })
                         }
                     });
-                    console.log('axis_data',axis_data_foreign)
 
                     return (axis_data_foreign)
                 }).catch(function(err) {
@@ -90,7 +89,7 @@ class SimpleStackedBarChart extends React.Component{
                             axis_data_foreign.push({
                                 "region":item['puma'],
                                 "Foreign Born":parseFloat(item['ENG_prof_mf_t']),
-                                "Foreign Born People of Color":parseFloat(item['ENG_prof_mf_t']),
+                                "Foreign Born People of Color":parseFloat(NB_ALL_data[i]['ENG_prof_mf_t']),
                             })
 
                         }

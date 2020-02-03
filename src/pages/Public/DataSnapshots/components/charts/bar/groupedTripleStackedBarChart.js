@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
-const regions = ['Western NY', 'Southern NY', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
+const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region'];
 
 class GroupedTripleStackedBarChart extends React.Component{
@@ -93,13 +93,13 @@ class GroupedTripleStackedBarChart extends React.Component{
                                 axis_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_f']),
-                                    "High School Diploma some college native":-parseFloat(item['BABS_f']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_f']),
                                     "Without High School diploma native":-parseFloat(item['HSINC_f'])
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_f']),
-                                    "High School Diploma some college native":-parseFloat(item['BABS_f']) ,
+                                    "High School Diploma some college native":-parseFloat(item['HS_f']) ,
                                     "Without High School diploma native":-parseFloat(item['HSINC_f'])
                                 })
                             }
