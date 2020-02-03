@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import config,{measures, chartmeasures} from '../data_config'
 import {connect} from "react-redux";
+import get from 'lodash.get'
 const DIV = styled.div`
             * {
             width: 200px;
@@ -95,7 +96,7 @@ class Dropdown extends React.Component{
                         value={this.props.education}
                     >
                         <option key={0} value={'none'}>- Education Level --</option>
-                        {this.props.year && this.props.indicator && this.props.nativity && config[this.props.year][this.props.indicator][this.props.nativity] ?
+                        {this.props.year && this.props.indicator && this.props.nativity && get(config,`${this.props.year}.${this.props.indicator}.${this.props.nativity}`, null) ?
                             Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
                             : null
                         }

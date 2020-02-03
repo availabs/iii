@@ -9,6 +9,8 @@ import group8 from './group8'
 import group9 from './group9'
 import group10 from './group10'
 import group11 from './group11'
+import group12 from './group12'
+import group13 from './group13'
 
 export default {
      group1,
@@ -21,5 +23,7 @@ export default {
      group8,
      group9,
      group10,
-     group11
+     group11,
+     group12,
+     group13
 }
