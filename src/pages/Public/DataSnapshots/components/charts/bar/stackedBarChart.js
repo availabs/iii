@@ -9,6 +9,18 @@ import ElementBox from "../../../../../../components/light-admin/containers/Elem
 
 const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region']
+let regionMappings = {
+    'Capital Region' : [2001,2002,2100,1900,1801,1802,1700,300],
+    'Central NY' : [704, 1500, 701, 702, 703, 600],
+    'Finger Lakes' : [1000,1300,901,902,903,904,905,906,1400,800],
+    'Long Island' : [3201,3202,3203,3204,3205,3206,3207,3208,3209,3210,3211,3212,3301,3302,3303,3304,3305,3306,3307,3308,3309,3310,3311,3312,3313],
+    'Mid-Hudson' : [2801,2802,2901,2902,2903,3101,3001,3002,3003,2701,2702,3102,3103,3104,3105,3106,3107],
+    'Mohawk Valley' : [1600,401,402,403],
+    'New York City' : [3701,3702,3703,3704,3705,3706,3707,3708,3709,3710,3801,3802,3803,3804,3805,3806,3807,3808,3809,3810,3901,3902,3903,4001,4002,4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4101,4102,4103,4104,4105,4106,4107,4108,4109,4110,4111,4112,4113,4114],
+    'North Country' : [200,500,100],
+    'Southern Tier' : [2201,2202,2401,2203,2402,2300],
+    'Western NY': [2500,2600,1201,1202,1203,1204,1205,1206,1207,1101,1102]
+}
 class StackedBarChart extends React.Component{
     constructor(props) {
         super(props);
@@ -73,14 +85,14 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m']),
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m']),
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
 
                                 })
                             }
@@ -89,13 +101,13 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f'])/regionMappings[item['puma']].length,
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f'])/regionMappings[item['puma']].length,
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_m']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_m']) ,
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_m'])/regionMappings[item['puma']].length ,
                                 })
                             }
                         })
@@ -206,14 +218,14 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
 
                                 })
                             }
@@ -222,13 +234,13 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']) ,
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length ,
                                 })
                             }
                         })
@@ -241,7 +253,7 @@ class StackedBarChart extends React.Component{
                             obj = {...stack_data_foreign[i], ...stack_data_native}
                             stackData.push(obj)
                         })
-
+                        console.log('axis,stack', axisData, stackData)
                         return ([axisData,stackData])
                     }).catch(function(err) {
                         // handle error here
@@ -391,8 +403,8 @@ class StackedBarChart extends React.Component{
                         labelSkipWidth={16}
                         labelSkipHeight={16}
                         labelFormat=".0s"
-                        maxValue={8000000}
-                        minValue={-8000000}
+                        maxValue={350000}
+                        minValue={-350000}
                         enableGridX={true}
                         enableGridY={true}
                         enableLabel={false}
