@@ -2,7 +2,7 @@ import React from 'react';
 import {CONTAINER} from "../theme/componentsNew";
 import ElementBox from "../../../components/light-admin/containers/ElementBox";
 
-const background = '/img/Methodology.jpg';
+const background = process.env.PUBLIC_URL + '/img/Methodology.jpg';
 const backgroundCSS = {
     height:'100vh',
     width: '100vw',
@@ -25,17 +25,17 @@ class Methodology extends React.Component {
     render() {
         return (
             <div style={backgroundCSS}>
-                <ElementBox style={{width:'100%', height:`calc('100%'-'100px)`, padding:0}}>
-                    <img style={{width: '100vw', boxShadow: '0px 1px 5px grey'}} src={background}/>
+                <ElementBox style={{width:'100%', height:`fit-content`, padding:0, display: 'flex', justifyContent: 'center'}}>
+                    <img style={{width: '90vw', boxShadow: '0px 1px 5px grey'}} src={background}/>
                 </ElementBox>
                 <CONTAINER style={{maxWidth: '100vw', marginBottom:'20px'}}>
                     <div style={{display:'flex', bottom:0,
                         width: '100vw',height:'100px',
                         justifyContent: 'space-around', background:'#ffffff'}}>
-                        <img src={'/img/CWG_LOGO.png'} style={{height:'100px'}}/>
-                        <div><img src={'/img/logo-task-force-logo-color.jpg'} style={{height:'100px'}}/>
+                        <img src={process.env.PUBLIC_URL + '/img/CWG_LOGO.png'} style={{height:'100px'}}/>
+                        <div><img src={process.env.PUBLIC_URL + '/img/logo-task-force-logo-color.jpg'} style={{height:'100px'}}/>
                         </div>
-                        <div><img src={'/img/seal-assembly-logo.jpg'} style={{height:'100px'}}/></div>
+                        <div><img src={process.env.PUBLIC_URL + '/img/seal-assembly-logo.jpg'} style={{height:'100px'}}/></div>
                     </div>
                 </CONTAINER>
             </div>

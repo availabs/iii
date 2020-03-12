@@ -3,6 +3,7 @@ import React from "react";
 import config from 'pages/Public/DataSnapshots/csv_config.js'
 import * as d3 from 'd3';
 import { connect } from 'react-redux';
+import get from 'lodash.get'
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 
 
@@ -28,6 +29,14 @@ class SimpleStackedBarChart extends React.Component{
 
     componentDidMount(){
         this.transformData().then(d =>{
+            d =  d.map(f => {
+                Object.keys(f).forEach(fKey => {
+                    if (typeof f[fKey] === 'number'){
+                        f[fKey] = get(f, fKey, 0).toFixed(0);
+                    }
+                })
+                return f;
+            })
             this.setState({
                 data : d
             })

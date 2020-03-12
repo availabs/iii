@@ -28,8 +28,9 @@ class PieChart extends React.Component{
 
     componentDidMount(){
         this.transformData().then(d =>{
+            console.log('data?', d)
             this.setState({
-                data : d
+                data : d.map(f => {f.value = parseInt(f.value).toFixed(0); return f;})
             })
         })
     }

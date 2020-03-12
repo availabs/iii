@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 import { connect } from 'react-redux';
 import Element from "../../../../../../components/light-admin/containers/Element";
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
+import get from "lodash.get";
 
 
 const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
@@ -38,8 +39,17 @@ class StackedBarChart extends React.Component{
     }
     componentDidMount(){
         this.transformData().then(d =>{
+            console.log('stackedBarChart data?', d)
+            d =  d[0].map(f => {
+                Object.keys(f).forEach(fKey => {
+                    if (typeof f[fKey] === 'number'){
+                        f[fKey] = get(f, fKey, 0).toFixed(0);
+                    }
+                })
+                return f;
+            })
             this.setState({
-                data : d[0]
+                data : d
             })
         })
     }

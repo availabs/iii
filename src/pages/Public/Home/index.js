@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import Introduction from '../Introduction/'
 import About from '../About/'
-const background = '/img/iii.jpg';
+const background = process.env.PUBLIC_URL + '/img/iii.jpg';
 const backgroundCSS = {
     backgroundImage:'url(' + background + ')',
     backgroundSize: 'cover',

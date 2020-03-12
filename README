@@ -1,0 +1,7 @@
+To change sub-domain:
+1. main.css: fonts,
+2. app.js: browser router base name,
+3. package.json: homepage
+
+TO build:
+npm run build

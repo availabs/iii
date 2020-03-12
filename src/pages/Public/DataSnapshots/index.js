@@ -15,15 +15,17 @@ class DataSnapshots extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            year : '',
-            chartmeasure:''
+            year : '2014',
+            chartmeasure:'Demographics'
         }
     }
 
     setStateOnChange(state){
+        console.log(state)
         this.setState(Object.assign(this.state, state))
     }
     render() {
+        console.log('this.state', this.state)
         return (
             <div className='row' style={{marginTop:'15px'}}>
                 <div className='col-sm-12'>

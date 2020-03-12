@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HEADER = styled.div`
                 color: rgb(239, 239, 239);
-                font-size: 5em;
+                font-size: 4.2em;
                 font-weight: 500;
                 font-family: "Proxima Nova W01";
                 font-variant: small-caps;

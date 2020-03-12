@@ -11,7 +11,7 @@ import Messages from './components/messages';
 import './App.css';
 import Redirect from "react-router/Redirect";
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory({basename: process.env.PUBLIC_URL});
 
 class App extends Component {
   constructor(props) {
@@ -46,11 +46,10 @@ class App extends Component {
   }
   render() {
     //console.log('app render user',this.props.user)
-
     return (
       <ThemeProvider theme={theme}>
         <div className="all-wrapper solid-bg-all">
-          <BrowserRouter>
+          <BrowserRouter basename={'/womeningov/iii/newPortal/build/'}>
             <Switch>
               {
                   Routes.routes.map((route, i) => {

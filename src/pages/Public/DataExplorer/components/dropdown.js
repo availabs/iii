@@ -37,7 +37,7 @@ class Dropdown extends React.Component{
                         value={this.props.year}
                     >
                         <option key={0} value={'none'}>-- Year --</option>
-                        {Object.keys(config).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)}
+                        {Object.keys(config).map((h,h_i) => <option key={h_i+1} value={h}>Year: {h}</option>)}
                     </select> : null}
 
                 {this.props.showIndicator ?
@@ -55,7 +55,7 @@ class Dropdown extends React.Component{
                     >
                         <option key={0} value={'none'}>-- Indicator --</option>
                         {this.props.year && config[this.props.year] ?
-                            Object.keys(config[this.props.year]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
+                            Object.keys(config[this.props.year]).map((h,h_i) => <option key={h_i+1} value={h}>Indicator: {h}</option>)
                             : null
                         }
                     </select> : null}
@@ -77,7 +77,7 @@ class Dropdown extends React.Component{
                         {this.props.year && this.props.indicator && config[this.props.year][this.props.indicator]?
                             Object.keys(config[this.props.year][this.props.indicator])
                                 .filter(k => k !== 'info')
-                                .map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
+                                .map((h,h_i) => <option key={h_i+1} value={h}>Nativity: {h}</option>)
                             : null
                         }
                     </select> : null}
@@ -97,7 +97,7 @@ class Dropdown extends React.Component{
                     >
                         <option key={0} value={'none'}>- Education Level --</option>
                         {this.props.year && this.props.indicator && this.props.nativity && get(config,`${this.props.year}.${this.props.indicator}.${this.props.nativity}`, null) ?
-                            Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h}>{h}</option>)
+                            Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h}>Education: {h}</option>)
                             : null
                         }
                     </select> : null}
@@ -116,7 +116,7 @@ class Dropdown extends React.Component{
                         value={this.props.measure}
                     >
                         <option key={0} value={'none'}>-- Measure --</option>
-                        {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]}>{h}</option>)}
+                        {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]}>Measure: {h}</option>)}
                     </select> : null}
 
                     {this.props.showChartMeasure ?
@@ -127,13 +127,14 @@ class Dropdown extends React.Component{
                         data-error="Please select measure"
                         onChange={(e) => {
                             if (e.target.value !== 'none') {
+                                console.log('e', e.target)
                                 this.props.setState({chartmeasure: e.target.value})
                             }
                         }}
                         value={this.props.chartmeasure}
                     >
                         <option key={0} value={'none'}>-- Measure --</option>
-                        {chartmeasures.map((h,h_i) => <option key={h_i+1} value={measures[h]}>{h}</option>)}
+                        {chartmeasures.map((h,h_i) => <option key={h_i+1} value={h}>Measure: {h}</option>)}
                     </select> : null}
 
                 {this.props.showDownload ?
@@ -142,8 +143,8 @@ class Dropdown extends React.Component{
                        onClick={() => {
                            this.props.onDownloadClick()
                        }}>
-                        <img style={{width:'50px', paddingTop:'7px'}}
-                             className="img-fluid" src={"/img/doc_thumb.png"} />
+                        <img style={{width:'50px', height: '67px', paddingTop:'7px'}}
+                             className="img-fluid" src={process.env.PUBLIC_URL + "/img/doc_thumb.png"} />
                         <div className="btn btn-bg">
                             <span style={{color:'#fff'}}>Download Report as PDF</span>
                         </div>

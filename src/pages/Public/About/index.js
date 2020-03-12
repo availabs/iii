@@ -37,7 +37,7 @@ class About extends React.Component {
                                 </p>
                                 <p>
                                     <IMG>
-                                        <img src="/img/img1.jpg"
+                                        <img src={process.env.PUBLIC_URL + "/img/img1.jpg"}
                                              className="img-responsive img-right" alt="Responsive image"
                                              style={{width: '420px', height: '320px'}} />
                                     </IMG>
@@ -54,7 +54,7 @@ class About extends React.Component {
                                 </p>
                                 <p>
                                     <IMG>
-                                        <img src="/img/img2.jpg"
+                                        <img src={process.env.PUBLIC_URL + "/img/img2.jpg"}
                                              className="img-responsive img-right" alt="Responsive image"
                                              style={{width: '420px', height: '320px'}} />
                                     </IMG>
@@ -79,7 +79,7 @@ class About extends React.Component {
                                 <p></p>
                                 <p>
                                     <IMG>
-                                        <img src="/img/img3.jpg"
+                                        <img src={process.env.PUBLIC_URL + "/img/img3.jpg"}
                                              className="img-responsive img-right" alt="Responsive image"
                                              style={{width: '420px', height: '320px'}} />
                                     </IMG>
@@ -98,7 +98,7 @@ class About extends React.Component {
                                 </p>
                                 <p>
                                     <IMG>
-                                        <img src="/img/img4.jpg"
+                                        <img src={process.env.PUBLIC_URL + "/img/img4.jpg"}
                                              className="img-responsive img-right" alt="Responsive image"
                                              style={{width: '420px', height: '320px'}} />
                                     </IMG>
@@ -142,7 +142,7 @@ class About extends React.Component {
                                 <p></p>
                                 <p>
                                     <IMG>
-                                        <img src="/img/img5.jpg"
+                                        <img src={process.env.PUBLIC_URL + "/img/img5.jpg"}
                                              className="img-responsive img-right" alt="Responsive image"
                                              style={{width: '420px', height: '320px'}} />
                                     </IMG>
@@ -209,16 +209,7 @@ class About extends React.Component {
                         }
                     </Element>
                 </div>
-                <CONTAINER style={{maxWidth: '100vw', marginBottom:'20px'}}>
-                        <div style={{display:'flex', bottom:0,
-                            width: '100vw',height:'100px',
-                            justifyContent: 'space-around', background:'#ffffff'}}>
-                                <img src={'/img/CWG_LOGO.png'} style={{height:'100px'}}/>
-                                <div><img src={'/img/logo-task-force-logo-color.jpg'} style={{height:'100px'}}/>
-                                </div>
-                                <div><img src={'/img/seal-assembly-logo.jpg'} style={{height:'100px'}}/></div>
-                        </div>
-                </CONTAINER>
+
             </div>
         )
     }

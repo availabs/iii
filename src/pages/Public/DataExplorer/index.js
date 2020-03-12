@@ -94,8 +94,12 @@ class DataExplorer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // year: '2014',indicator: 'The Effects of Nativity Status',nativity:'Foreign-Born and Native-Born', education:'Bachelor’s Degree or More',
-            year: '',indicator: '',nativity:'', education:'',
+            year: '2014',
+            indicator: 'The Effects of Nativity Status',
+            nativity:'Foreign-Born and Native-Born',
+            education:'Bachelor’s Degree or More',
+            measure: 'Overall',
+            // year: '',indicator: '',nativity:'', education:'',
             activeRegions: null,
             geoData: null,
             childGeo: null,
