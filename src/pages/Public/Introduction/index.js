@@ -26,6 +26,7 @@ class Introduction extends React.Component {
     }
 
     render() {
+
         return (
             <div style={backgroundCSS}>
                 <div style={{height: '100%'}}>
@@ -43,10 +44,16 @@ class Introduction extends React.Component {
                             </TEXT>
                         </CONTAINER>
                     </div>
-                    <div className="col-md-12"
+                   <div className="col-md-12"
                          style={{
                              color: 'rgb(239, 239, 239)', overflow: 'hidden auto',
-                             padding: '10px', top:'25px', fontSize: '11px', textAlign: 'right', backgroundColor: `rgb(255, 255, 255)`
+                             width:'100vw',
+                             padding: '10px',
+                             position:'absolute',
+                             bottom:'0',
+                             fontSize: '11px',
+                             textAlign: 'right',
+                             backgroundColor: `rgb(255, 255, 255)`
                          }}>
                         <div className="container">
                             <div className="row">
