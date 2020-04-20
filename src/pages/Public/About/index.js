@@ -168,49 +168,73 @@ class About extends React.Component {
         let tab = get(this.props,`router.location.hash`, '#about');
         tab = tab === '' ? '#about' : tab
         return (
-            <Element>
-                <div style={backgroundCSS} className='content-w'>
-                    <div style={subSectionsCSS} className="os-tabs-controls content-w">
-                        <div className="os-tabs-controls" style={{width:'100vw', right: 0, top: 0,marginBottom:0}} >
-                            <ul className="nav nav-tabs upper col-sm-12" style={{justifyContent:'center', padding:0}}>
-                                <li className="nav-item col-sm-3" style={{width:'30%'}}>
-                                    <a className={tab === '#about' ? "nav-link active" : "nav-link"}
-                                       data-toggle="tab"
-                                       href="/about/#about"
-                                       style={{textAlign:'center'}}
-                                    >About</a>
-                                </li>
-                                <li className="nav-item col-sm-3" style={{width:'30%'}}>
-                                    <a className={tab === '#meaning' ? "nav-link active" : "nav-link"}
-                                       data-toggle="tab"
-                                       href="/about/#meaning"
-                                       style={{textAlign:'center'}}
-                                    > Meaning</a>
-                                </li>
-                                <li className="nav-item col-sm-3" style={{width:'30%'}}>
-                                    <a className={tab === '#measure' ? "nav-link active" : "nav-link"}
-                                       data-toggle="tab"
-                                       href="/about/#measure"
-                                       style={{textAlign:'center'}}
-                                    > Measure</a>
-                                </li>
-                            </ul>
+            <div className='container'>
+                <Element>
+                    <div style={backgroundCSS} className='content-w'>
+                        <div style={subSectionsCSS} className="os-tabs-controls content-w">
+                            <div className="os-tabs-controls" style={{width:'100vw', right: 0, top: 0,marginBottom:0}} >
+                                <ul className="nav nav-tabs upper col-sm-12" style={{justifyContent:'center', padding:0}}>
+                                    <li className="nav-item col-sm-3" style={{width:'30%'}}>
+                                        <a className={tab === '#about' ? "nav-link active" : "nav-link"}
+                                           data-toggle="tab"
+                                           href="/about/#about"
+                                           style={{textAlign:'center'}}
+                                        >About</a>
+                                    </li>
+                                    <li className="nav-item col-sm-3" style={{width:'30%'}}>
+                                        <a className={tab === '#meaning' ? "nav-link active" : "nav-link"}
+                                           data-toggle="tab"
+                                           href="/about/#meaning"
+                                           style={{textAlign:'center'}}
+                                        > Meaning</a>
+                                    </li>
+                                    <li className="nav-item col-sm-3" style={{width:'30%'}}>
+                                        <a className={tab === '#measure' ? "nav-link active" : "nav-link"}
+                                           data-toggle="tab"
+                                           href="/about/#measure"
+                                           style={{textAlign:'center'}}
+                                        > Measure</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class='container'>
-                        {
-                            tab === '#about' ?
-                                this.renderAbout() :
-                                tab === '#meaning' ?
-                                    this.renderMeaning() :
-                                    tab === '#measure' ?
-                                        this.renderMeasure() : this.renderAbout()
+                        <div class='container'>
+                            {
+                                tab === '#about' ?
+                                    this.renderAbout() :
+                                    tab === '#meaning' ?
+                                        this.renderMeaning() :
+                                        tab === '#measure' ?
+                                            this.renderMeasure() : this.renderAbout()
 
-                        }
-                    </div>
+                            }
+                            <div className="col-md-12"
+                                 style={{
+                                     color: 'rgb(239, 239, 239)', overflow: 'hidden auto',
+                                     padding: '10px', top:'25px', fontSize: '11px', textAlign: 'right', backgroundColor: `rgb(255, 255, 255)`
+                                 }}>
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="col-xs-10" style={{width: '100%'}}>
+                                            <img className="img-fluid"
+                                                 src={process.env.PUBLIC_URL + '/img/CWG_LOGO.png'}
+                                                 style={{float: 'left', paddingTop: '45px'}}/>
+                                            <img className="img-fluid"
+                                                 src={process.env.PUBLIC_URL + '/img/seal-assembly-logo.jpg'}
+                                                 style={{float: 'right', height: '150px', padding: '5px'}}/>
+                                            <img className="img-fluid"
+                                                 src={process.env.PUBLIC_URL + '/img/logo-task-force-logo-color.jpg'}
+                                                 style={{float: 'right', height: '150px', padding: '5px'}}/>
 
-                </div>
-            </Element>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </Element>
+            </div>
         )
     }
 }
