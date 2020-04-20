@@ -18,9 +18,11 @@ const DIV = styled.div`
              hyphens: auto;
             }
 `;
-const selectStyle = { border:'none', backgroundColor: '#5a6a92', color: '#fff', fontSize:'1.1rem'}
+const selectStyle = { border:'none', backgroundColor: '#5a6a92', color: '#fff', fontSize:'16px',width: '350px',
+    margin: '10px'}
 class Dropdown extends React.Component{
     render(){
+        console.log('check',this.props.indicator)
         return (
             <DIV style={{display: 'flex', width:'100vw', justifyContent: 'space-evenly', backgroundColor: '#5a6a92', boxShadow: '0px 1px 5px grey', marginBottom: '7px'}}>
                 {this.props.showYear ?
@@ -36,8 +38,8 @@ class Dropdown extends React.Component{
                         }}
                         value={this.props.year}
                     >
-                        <option key={0} value={'none'}>-- Year --</option>
-                        {Object.keys(config).map((h,h_i) => <option key={h_i+1} value={h}>Year: {h}</option>)}
+                        <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Year --</option>
+                        {Object.keys(config).map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)}
                     </select> : null}
 
                 {this.props.showIndicator ?
@@ -53,9 +55,9 @@ class Dropdown extends React.Component{
                         }}
                         value={this.props.indicator}
                     >
-                        <option key={0} value={'none'}>-- Indicator --</option>
+                        <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Analysis By Variable --</option>
                         {this.props.year && config[this.props.year] ?
-                            Object.keys(config[this.props.year]).map((h,h_i) => <option key={h_i+1} value={h}>Indicator: {h}</option>)
+                            Object.keys(config[this.props.year]).map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)
                             : null
                         }
                     </select> : null}
@@ -73,11 +75,11 @@ class Dropdown extends React.Component{
                         }}
                         value={this.props.nativity}
                     >
-                        <option key={0} value={'none'}>-- Nativity --</option>
+                        <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Analysis By Group --</option>
                         {this.props.year && this.props.indicator && config[this.props.year][this.props.indicator]?
                             Object.keys(config[this.props.year][this.props.indicator])
                                 .filter(k => k !== 'info')
-                                .map((h,h_i) => <option key={h_i+1} value={h}>Nativity: {h}</option>)
+                                .map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)
                             : null
                         }
                     </select> : null}
@@ -95,9 +97,9 @@ class Dropdown extends React.Component{
                         }}
                         value={this.props.education}
                     >
-                        <option key={0} value={'none'}>- Education Level --</option>
+                        <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Analysis By Educational Attainment --</option>
                         {this.props.year && this.props.indicator && this.props.nativity && get(config,`${this.props.year}.${this.props.indicator}.${this.props.nativity}`, null) ?
-                            Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h}>Education: {h}</option>)
+                            Object.keys(config[this.props.year][this.props.indicator][this.props.nativity]).map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)
                             : null
                         }
                     </select> : null}
@@ -115,8 +117,8 @@ class Dropdown extends React.Component{
                         }}
                         value={this.props.measure}
                     >
-                        <option key={0} value={'none'}>-- Measure --</option>
-                        {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]}>Measure: {h}</option>)}
+                        <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Indicator --</option>
+                        {Object.keys(measures).map((h,h_i) => <option key={h_i+1} value={measures[h]} style={{fontSize:'16px'}}>{h}</option>)}
                     </select> : null}
 
                     {this.props.showChartMeasure ?
@@ -133,8 +135,8 @@ class Dropdown extends React.Component{
                         }}
                         value={this.props.chartmeasure}
                     >
-                        <option key={0} value={'none'}>-- Measure --</option>
-                        {chartmeasures.map((h,h_i) => <option key={h_i+1} value={h}>Measure: {h}</option>)}
+                        <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Measure --</option>
+                        {chartmeasures.map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)}
                     </select> : null}
 
                 {this.props.showDownload ?

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Element from "../../../../../../components/light-admin/containers/Element";
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 import get from "lodash.get";
-
+import { fnum } from "utils/sheldusUtils"
 
 const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region']
@@ -421,13 +421,13 @@ class StackedBarChart extends React.Component{
                         axisTop={{
                             tickSize: 0,
                             tickPadding: 12,
-                            format: v => `${Math.abs(v)}`
+                            format: v => `${fnum(Math.abs(v))}`
                         }}
                         axisBottom={{
                             legendOffset: 50,
                             tickSize: 0,
                             tickPadding: 12,
-                            format: v => `${Math.abs(v)}`
+                            format: v => `${fnum(Math.abs(v))}`
                         }}
                         axisLeft={{
                             "orient": "right",
@@ -474,7 +474,10 @@ class StackedBarChart extends React.Component{
                             },
                         ]}
                         */
-                        tooltipFormat={value => '$'+`${Math.abs(value)}`
+                        tooltipFormat={value => `${parseFloat(Math.abs(value)).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD"
+                        })}` + ' Income'
                         }
                     /> :
                     <ResponsiveBar
@@ -581,7 +584,7 @@ class StackedBarChart extends React.Component{
                             },
                         ]}
                         */
-                        tooltipFormat={value => `${Math.abs(value)}` + '%'
+                        tooltipFormat={value => `${Math.abs(value)}` + '% Population'
                         }
                     />
                 }

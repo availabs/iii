@@ -4,6 +4,7 @@ import Landing from './pages/Landing'
 
 // -- Public Pages
 import Public from './pages/Public/Home/'
+import About from './pages/Public/About/'
 import DataExplorer from './pages/Public/DataExplorer/'
 import DataSnapshots from './pages/Public/DataSnapshots/'
 import Methodology from './pages/Public/Methodology/'
@@ -12,6 +13,7 @@ import NoMatch from './pages/404.js'
 
 const routes = [
         ...Public,
+        ...About,
         ...DataExplorer,
         ...DataSnapshots,
         ...Methodology,

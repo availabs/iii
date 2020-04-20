@@ -110,7 +110,7 @@ class PieChart extends React.Component{
 
     render(){
         const style={
-            height: '100vh',
+            height: '70vh',
             width: '95vw'
         };
         return (
@@ -134,7 +134,7 @@ class PieChart extends React.Component{
                     radialLabelsLinkStrokeWidth={1}
                     radialLabelsLinkColor={{ from: 'color' }}
                     slicesLabelsSkipAngle={10}
-                    slicesLabelsTextColor="#333333"
+                    slicesLabelsTextSize={{ text: {fontSize: '50px'}}}
                     enableSlicesLabels={false}
                     enableRadialLabels={true}
                     motionStiffness={90}
@@ -153,13 +153,19 @@ class PieChart extends React.Component{
                                 {
                                     on: 'hover',
                                     style: {
-                                        itemTextColor: '#000'
+                                        itemTextColor: '#000',
                                     }
                                 }
                             ]
                         }
                     ]}
-
+                    tooltip={function(e){
+                        return (
+                            <div style={{fontSize:'18px'}}>
+                                {e.region + " : " + e.value.toString() + '% ' + ' Population '}
+                            </div>
+                            )
+                    }}
                 />
             </ElementBox>
 

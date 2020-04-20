@@ -155,6 +155,9 @@ class SimpleStackedBarChart extends React.Component{
                         enableLabel={false}
                         motionStiffness={90}
                         motionDamping={15}
+                        tooltipFormat={
+                            value => `${Math.abs(value)}` + '%'
+                        }
                     />
                     :
                     <ResponsiveBar
@@ -189,6 +192,8 @@ class SimpleStackedBarChart extends React.Component{
                         enableLabel={false}
                         motionStiffness={90}
                         motionDamping={15}
+                        tooltipFormat={value => `${Math.abs(value)}` + '% Population'
+                        }
                     />
 
                 }
