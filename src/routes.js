@@ -2,6 +2,7 @@
 import Landing from './pages/Landing'
 // -- Public Pages
 import Public from './pages/Public/Home/'
+import About from './pages/Public/About/'
 import DataExplorer from './pages/Public/DataExplorer/'
 import DataSnapshots from './pages/Public/DataSnapshots/'
 import Methodology from './pages/Public/Methodology/'
@@ -11,6 +12,7 @@ import Analysis from './pages/Public/Analysis'
 
 const routes = [
     ...Public,
+    ...About,
     ...Analysis,
     ...DataExplorer,
     ...DataSnapshots,

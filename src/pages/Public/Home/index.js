@@ -60,7 +60,6 @@ class Public extends React.Component {
         return (
            <div>
                <Introduction/>
-               <About/>
            </div>
         )
     }

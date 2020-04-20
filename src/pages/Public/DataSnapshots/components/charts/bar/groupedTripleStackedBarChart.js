@@ -311,7 +311,7 @@ class GroupedTripleStackedBarChart extends React.Component{
                             },
                         ]}
                         */
-                        tooltipFormat={value => `${Math.abs(value)}` + '%'
+                        tooltipFormat={value => `${Math.abs(value)}` + '% Population'
                         }
                     />
             </ElementBox>

@@ -168,49 +168,49 @@ class About extends React.Component {
         let tab = get(this.props,`router.location.hash`, '#about');
         tab = tab === '' ? '#about' : tab
         return (
-            <div style={backgroundCSS} className='content-w'>
-                <div style={subSectionsCSS} className="os-tabs-controls content-w">
-                    <div className="os-tabs-controls" style={{width:'100vw', right: 0, top: 0,marginBottom:0}} >
-                        <ul className="nav nav-tabs upper col-sm-12" style={{justifyContent:'center', padding:0}}>
-                            <li className="nav-item col-sm-3" style={{width:'30%'}}>
-                                <a className={tab === '#about' ? "nav-link active" : "nav-link"}
-                                   data-toggle="tab"
-                                   href="#about"
-                                   style={{textAlign:'center'}}
-                                > About</a>
-                            </li>
-                            <li className="nav-item col-sm-3" style={{width:'30%'}}>
-                                <a className={tab === '#meaning' ? "nav-link active" : "nav-link"}
-                                   data-toggle="tab"
-                                   href="#meaning"
-                                   style={{textAlign:'center'}}
-                                > Meaning</a>
-                            </li>
-                            <li className="nav-item col-sm-3" style={{width:'30%'}}>
-                                <a className={tab === '#measure' ? "nav-link active" : "nav-link"}
-                                   data-toggle="tab"
-                                   href="#measure"
-                                   style={{textAlign:'center'}}
-                                > Measure</a>
-                            </li>
-                        </ul>
+            <Element>
+                <div style={backgroundCSS} className='content-w'>
+                    <div style={subSectionsCSS} className="os-tabs-controls content-w">
+                        <div className="os-tabs-controls" style={{width:'100vw', right: 0, top: 0,marginBottom:0}} >
+                            <ul className="nav nav-tabs upper col-sm-12" style={{justifyContent:'center', padding:0}}>
+                                <li className="nav-item col-sm-3" style={{width:'30%'}}>
+                                    <a className={tab === '#about' ? "nav-link active" : "nav-link"}
+                                       data-toggle="tab"
+                                       href="/about/#about"
+                                       style={{textAlign:'center'}}
+                                    >About</a>
+                                </li>
+                                <li className="nav-item col-sm-3" style={{width:'30%'}}>
+                                    <a className={tab === '#meaning' ? "nav-link active" : "nav-link"}
+                                       data-toggle="tab"
+                                       href="/about/#meaning"
+                                       style={{textAlign:'center'}}
+                                    > Meaning</a>
+                                </li>
+                                <li className="nav-item col-sm-3" style={{width:'30%'}}>
+                                    <a className={tab === '#measure' ? "nav-link active" : "nav-link"}
+                                       data-toggle="tab"
+                                       href="/about/#measure"
+                                       style={{textAlign:'center'}}
+                                    > Measure</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div className='container'>
-                    <Element>
+                    <div class='container'>
                         {
-                           tab === '#about' ?
+                            tab === '#about' ?
                                 this.renderAbout() :
-                               tab === '#meaning' ?
-                                   this.renderMeaning() :
-                                   tab === '#measure' ?
-                                       this.renderMeasure() : this.renderAbout()
+                                tab === '#meaning' ?
+                                    this.renderMeaning() :
+                                    tab === '#measure' ?
+                                        this.renderMeasure() : this.renderAbout()
 
                         }
-                    </Element>
-                </div>
+                    </div>
 
-            </div>
+                </div>
+            </Element>
         )
     }
 }
@@ -222,5 +222,20 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {};
-export default connect(mapStateToProps, mapDispatchToProps)(About)
+export default [{
+    icon: 'os-icon-home',
+    path: '/about',
+    exact: false,
+    name: 'About',
+    auth: false,
+    mainNav: true,
+    menuSettings: {
+        image: 'none',
+        scheme: 'color-scheme-dark',
+        position: 'menu-position-top',
+        layout: 'menu-layout-full',
+        style: 'color-style-default'
+    },
+    component: About
+}];
 
