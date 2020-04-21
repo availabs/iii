@@ -18,7 +18,7 @@ const DIV = styled.div`
              hyphens: auto;
             }
 `;
-const selectStyle = { border:'none', backgroundColor: '#5a6a92', color: '#fff', fontSize:'16px',width: '350px',
+const selectStyle = { border:'none', backgroundColor: '#5a6a92', color: '#fff', fontSize:'16px',width: '100%', maxWidth: '350px',
     margin: '10px'}
 class Dropdown extends React.Component{
     render(){

@@ -81,7 +81,7 @@ class Public extends React.Component {
                                                                        <li>{nativity}</li>
                                                                        {Object.keys(config[year][indicator][nativity]).map(education =>
                                                                            <div><Link to={{
-                                                                               pathname: process.env.PUBLIC_URL + '/data/',
+                                                                               pathname: '/data/',
                                                                                oldState: {
                                                                                    year,
                                                                                    indicator,
