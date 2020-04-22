@@ -25,7 +25,7 @@ class DataSnapshots extends React.Component {
         this.setState(Object.assign(this.state, state))
     }
     render() {
-        console.log('this.state', this.state)
+
         return (
             <div className='row' style={{marginTop:'15px'}}>
                 <div className='col-sm-12'>
