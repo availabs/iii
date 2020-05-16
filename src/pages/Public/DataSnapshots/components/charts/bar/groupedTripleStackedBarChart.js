@@ -191,8 +191,8 @@ class GroupedTripleStackedBarChart extends React.Component{
 
     render(){
         const style={
-            height: 400,
-            width: 1000
+            height: '70vh',
+            width: '95vw'
         };
         return (
             <ElementBox style={style}>
@@ -201,8 +201,8 @@ class GroupedTripleStackedBarChart extends React.Component{
                         data={this.state.data}
                         margin={{
                             top: 50,
-                            right: 250,
-                            bottom: 60,
+                            right: 255,
+                            bottom: 80,
                             left: 180
                         }}
                         indexBy="region"
@@ -211,69 +211,37 @@ class GroupedTripleStackedBarChart extends React.Component{
                             "College Degree or better native", "High School Diploma some college native",
                             "Without High School diploma native"
                         ]}
-                        padding={0.3}
-                        defs={[
-                            {
-                                id: 'dots',
-                                type: 'patternDots',
-                                background: 'inherit',
-                                color: '#000000',
-                                size: 1,
-                                padding: 1,
-                                stagger: true
-                            },
-
-                        ]}
-                        fill={[
-                            {
-                                match: {
-                                    id: 'College Degree or better native'
-                                },
-                                id: 'dots'
-                            },
-                            {
-                                match: {
-                                    id: 'High School Diploma some college native'
-                                },
-                                id: 'dots'
-                            },
-                            {
-                                match: {
-                                    id: 'Without High School diploma native'
-                                },
-                                id: 'dots'
-                            },
-
-
-                        ]}
+                        padding={0.4}
+                        colors={{ scheme: 'paired' }}
                         layout="horizontal"
                         groupMode="stacked"
-                        labelTextColor="inherit:darker(1.6)"
-                        labelSkipWidth={16}
-                        labelSkipHeight={16}
-                        labelFormat=".0s"
+                        labelTextColor="black"
+                        labelSkipWidth={0}
+                        labelSkipHeight={0}
+                        labelFormat={d=> `${Math.abs(d)}` + '%'}
                         enableGridX={true}
-                        enableGridY={true}
-                        enableLabel={false}
+                        enableGridY={false}
+                        enableLabel={true}
                         axisTop={{
                             tickSize: 0,
                             tickPadding: 12,
                             format: v => `${Math.abs(v)}`
                         }}
                         axisBottom={{
-                            legendOffset: 50,
-                            tickSize: 0,
+                            tickSize: 5,
                             tickPadding: 12,
-                            format: v => `${Math.abs(v)}`
+                            tickRotation: 0,
+                            legend: 'Population Percentage',
+                            legendPosition: 'middle',
+                            legendOffset: 60
                         }}
                         axisLeft={{
-                            "orient": "right",
-                            "tickSize": 5,
-                            "tickPadding": 5,
-                            "tickRotation": 0,
-                            "legendPosition": "end",
-                            "legendOffset": -50,
-
+                            tickSize: 5,
+                            tickPadding: 12,
+                            tickRotation: 0,
+                            legend: 'Regions',
+                            legendPosition: 'middle',
+                            legendOffset: -110
                         }}
                         markers={[
                             {
@@ -295,7 +263,6 @@ class GroupedTripleStackedBarChart extends React.Component{
                                 legendOffsetY: -40,
                             },
                         ]}
-                        /*
                         legends={[
                             {
                                 dataFrom: 'keys',
@@ -307,10 +274,20 @@ class GroupedTripleStackedBarChart extends React.Component{
                                 itemsSpacing: 2,
                                 itemWidth: 100,
                                 itemHeight: 20,
-
-                            },
+                                itemDirection: 'left-to-right',
+                                itemOpacity: 0.85,
+                                symbolSize: 20,
+                                effects: [
+                                    {
+                                        on: 'hover',
+                                        style: {
+                                            itemOpacity: 1
+                                        }
+                                    }
+                                ]
+                            }
                         ]}
-                        */
+
                         tooltipFormat={value => `${Math.abs(value)}` + '% Population'
                         }
                     />

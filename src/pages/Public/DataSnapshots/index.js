@@ -5,7 +5,7 @@ import DROPDOWN from "../DataExplorer/components/dropdown";
 import {connect} from "react-redux";
 import StackedBarChart from "./components/charts/bar/stackedBarChart";
 import GroupedTripleStackedBarChart from "./components/charts/bar/groupedTripleStackedBarChart";
-import PieChart from "./components/charts/pie/pieChart";
+import BarChart from "./components/charts/bar/simpleBarChart";
 import SimpleStackedBarChart from "./components/charts/bar/simpleStackedBarChart";
 import {TEXT} from "../theme/componentsNew";
 import get from "lodash.get";
@@ -21,7 +21,6 @@ class DataSnapshots extends React.Component {
     }
 
     setStateOnChange(state){
-        console.log(state)
         this.setState(Object.assign(this.state, state))
     }
     render() {
@@ -173,7 +172,7 @@ class DataSnapshots extends React.Component {
                                 {
                                     ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Demographics' ?
                                         <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
-                                            <PieChart
+                                            <BarChart
                                                 type={['Demographics']} year={[this.state.year]}
                                                 nativity={["Foreign Born"]}
                                                 title={'Foreign born population across New York state region - '}
@@ -183,14 +182,14 @@ class DataSnapshots extends React.Component {
                                         this.state.year === 'Hispanic New Yorkers' && this.state.chartmeasure === 'Demographics' ?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <div>
-                                                    <PieChart
+                                                    <BarChart
                                                         type={['Demographics']} year={[this.state.year]}
                                                         nativity={["Foreign Born"]}
                                                         title={'Foreign born Hispanic population across New York state region - '}
                                                     />
                                                 </div>
                                                 <div>
-                                                    <PieChart
+                                                    <BarChart
                                                         type={['Demographics']} year={[this.state.year]}
                                                         nativity={["Foreign Born Hispanic People of Color"]}
                                                         title={'Foreign born Hispanic People of Color population across New York state region - '}

@@ -304,9 +304,8 @@ class StackedBarChart extends React.Component{
 
     render(){
         const style={
-            height: 400,
-            width: 1000,
-            padding: 20
+            height: '70vh',
+            width: '95vw'
         };
         return (
             <ElementBox style={style}>
@@ -317,70 +316,49 @@ class StackedBarChart extends React.Component{
                         margin={{
                             top: 50,
                             right: 250,
-                            bottom: 60,
+                            bottom: 80,
                             left: 180
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={0.3}
-                        defs={[
-                            {
-                                id: 'dots',
-                                type: 'patternDots',
-                                background: 'inherit',
-                                color: '#000000',
-                                size: 1,
-                                padding: 1,
-                                stagger: true
-                            },
-
-                        ]}
-                        fill={[
-                            {
-                                match: {
-                                    id: 'College Degree or better native'
-                                },
-                                id: 'dots'
-                            },
-                            {
-                                match: {
-                                    id: 'High School Diploma some college native'
-                                },
-                                id: 'dots'
-                            },
-
-                        ]}
+                        padding={0.1}
+                        colors={{ scheme: 'set2' }}
+                        enableGridX={false}
+                        enableGridY= {true}
+                        axisBottom={{
+                            tickSize: 5,
+                            tickPadding: 12,
+                            tickRotation: 0,
+                            legend: 'Income in $',
+                            legendPosition: 'middle',
+                            legendOffset: 60,
+                            format: v => `${fnum(Math.abs(v))}`
+                        }}
+                        axisLeft={{
+                            tickSize: 5,
+                            tickPadding: 12,
+                            tickRotation: 0,
+                            legend: 'Regions',
+                            legendPosition: 'middle',
+                            legendOffset: -110
+                        }}
                         layout="horizontal"
-                        groupMode="stacked"
-                        labelTextColor="inherit:darker(1.6)"
-                        labelSkipWidth={16}
-                        labelSkipHeight={16}
-                        labelFormat=".0s"
+                        groupMode="grouped"
+                        labelTextColor="black"
+                        labelSkipWidth={0}
+                        labelSkipHeight={0}
+                        labelFormat={d=> `${fnum(Math.abs(d))}`}
                         maxValue={350000}
                         minValue={-350000}
-                        enableGridX={true}
+                        enableGridX={false}
                         enableGridY={true}
-                        enableLabel={false}
+                        enableLabel={true}
                         axisTop={{
                             tickSize: 0,
                             tickPadding: 12,
                             format: v => `${fnum(Math.abs(v))}`
                         }}
-                        axisBottom={{
-                            legendOffset: 50,
-                            tickSize: 0,
-                            tickPadding: 12,
-                            format: v => `${fnum(Math.abs(v))}`
-                        }}
-                        axisLeft={{
-                            "orient": "right",
-                            "tickSize": 5,
-                            "tickPadding": 5,
-                            "tickRotation": 0,
-                            "legendPosition": "end",
-                            "legendOffset": -50,
 
-                        }}
                         markers={[
                             {
                                 axis: 'x',
@@ -401,7 +379,6 @@ class StackedBarChart extends React.Component{
                                 legendOffsetY: -40,
                             },
                         ]}
-                        /*
                         legends={[
                             {
                                 dataFrom: 'keys',
@@ -413,13 +390,24 @@ class StackedBarChart extends React.Component{
                                 itemsSpacing: 2,
                                 itemWidth: 100,
                                 itemHeight: 20,
-
-                            },
+                                itemDirection: 'left-to-right',
+                                itemOpacity: 0.85,
+                                symbolSize: 20,
+                                effects: [
+                                    {
+                                        on: 'hover',
+                                        style: {
+                                            itemOpacity: 1
+                                        }
+                                    }
+                                ]
+                            }
                         ]}
-                        */
                         tooltipFormat={value => `${parseFloat(Math.abs(value)).toLocaleString("en-US", {
                             style: "currency",
-                            currency: "USD"
+                            currency: "USD",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0
                         })}` + ' Income'
                         }
                     /> :
@@ -428,68 +416,44 @@ class StackedBarChart extends React.Component{
                         margin={{
                             top: 50,
                             right: 250,
-                            bottom: 60,
+                            bottom: 80,
                             left: 180
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={0.3}
-                        defs={[
-                            {
-                                id: 'dots',
-                                type: 'patternDots',
-                                background: 'inherit',
-                                color: '#000000',
-                                size: 1,
-                                padding: 1,
-                                stagger: true
-                            },
-
-                        ]}
-                        fill={[
-                            {
-                                match: {
-                                    id: 'College Degree or better native'
-                                },
-                                id: 'dots'
-                            },
-                            {
-                                match: {
-                                    id: 'High School Diploma some college native'
-                                },
-                                id: 'dots'
-                            },
-
-                        ]}
+                        padding={0.1}
+                        colors={{ scheme: 'set2' }}
                         layout="horizontal"
-                        groupMode="stacked"
-                        labelTextColor="inherit:darker(1.6)"
-                        labelSkipWidth={16}
-                        labelSkipHeight={16}
-                        labelFormat=".0s"
-
+                        groupMode="grouped"
+                        labelTextColor="black"
+                        labelSkipWidth={0}
+                        labelSkipHeight={0}
+                        labelFormat={d=> `${Math.abs(d)}` + '%'}
+                        maxValue={80}
+                        minValue={-80}
                         enableGridX={true}
-                        enableGridY={true}
-                        enableLabel={false}
+                        enableGridY={false}
+                        enableLabel={true}
                         axisTop={{
                             tickSize: 0,
                             tickPadding: 12,
                             format: v => `${Math.abs(v)}`
                         }}
                         axisBottom={{
-                            legendOffset: 50,
-                            tickSize: 0,
+                            tickSize: 5,
                             tickPadding: 12,
-                            format: v => `${Math.abs(v)}`
+                            tickRotation: 0,
+                            legend: 'Population Percentage',
+                            legendPosition: 'middle',
+                            legendOffset: 60
                         }}
                         axisLeft={{
-                            "orient": "right",
-                            "tickSize": 5,
-                            "tickPadding": 5,
-                            "tickRotation": 0,
-                            "legendPosition": "end",
-                            "legendOffset": -50,
-
+                            tickSize: 5,
+                            tickPadding: 12,
+                            tickRotation: 0,
+                            legend: 'Regions',
+                            legendPosition: 'middle',
+                            legendOffset: -110
                         }}
                         markers={[
                             {
@@ -511,7 +475,6 @@ class StackedBarChart extends React.Component{
                                 legendOffsetY: -40,
                             },
                         ]}
-                        /*
                         legends={[
                             {
                                 dataFrom: 'keys',
@@ -523,10 +486,19 @@ class StackedBarChart extends React.Component{
                                 itemsSpacing: 2,
                                 itemWidth: 100,
                                 itemHeight: 20,
-
-                            },
+                                itemDirection: 'left-to-right',
+                                itemOpacity: 0.85,
+                                symbolSize: 20,
+                                effects: [
+                                    {
+                                        on: 'hover',
+                                        style: {
+                                            itemOpacity: 1
+                                        }
+                                    }
+                                ]
+                            }
                         ]}
-                        */
                         tooltipFormat={value => `${Math.abs(value)}` + '% Population'
                         }
                     />

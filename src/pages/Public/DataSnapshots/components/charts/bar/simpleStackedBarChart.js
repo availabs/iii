@@ -116,8 +116,8 @@ class SimpleStackedBarChart extends React.Component{
 
     render(){
         const style={
-            height: 400,
-            width: 1000
+            height: '70vh',
+            width: '95vw'
         };
         return (
             <ElementBox style={style}>
@@ -127,34 +127,59 @@ class SimpleStackedBarChart extends React.Component{
                         data={this.state.data}
                         keys={["Foreign Born Male","Foreign Born Female"]}
                         indexBy="region"
-                        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+                        margin={{ top: 50, right: 150, bottom: 100, left: 60 }}
                         padding={0.5}
-                        colors={{ scheme: 'nivo' }}
+                        colors={{ scheme: 'paired' }}
                         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
                         axisTop={null}
                         axisRight={null}
                         axisBottom={{
                             tickSize: 5,
-                            tickPadding: 5,
-                            tickRotation: 0,
-                            legend: 'County',
+                            tickPadding: 12,
+                            tickRotation: -20,
+                            legend: 'Regions',
                             legendPosition: 'middle',
-                            legendOffset: 32
+                            legendOffset: 70
                         }}
                         axisLeft={{
                             tickSize: 5,
-                            tickPadding: 5,
+                            tickPadding: 12,
                             tickRotation: 0,
-                            legend: 'Percent',
+                            legend: 'Population Percent',
                             legendPosition: 'middle',
                             legendOffset: -40
                         }}
                         labelSkipWidth={12}
                         labelSkipHeight={12}
-                        labelTextColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
-                        enableLabel={false}
-                        motionStiffness={90}
-                        motionDamping={15}
+                        labelTextColor="black"
+                        labelFormat={d=> `${d}` + '%'}
+                        enableLabel={true}
+                        groupMode="grouped"
+                        layout="vertical"
+                        legends={[
+                            {
+                                dataFrom: 'keys',
+                                anchor: 'bottom-right',
+                                direction: 'column',
+                                justify: false,
+                                translateX: 120,
+                                translateY: 0,
+                                itemsSpacing: 2,
+                                itemWidth: 100,
+                                itemHeight: 20,
+                                itemDirection: 'left-to-right',
+                                itemOpacity: 0.85,
+                                symbolSize: 20,
+                                effects: [
+                                    {
+                                        on: 'hover',
+                                        style: {
+                                            itemOpacity: 1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]}
                         tooltipFormat={
                             value => `${Math.abs(value)}` + '%'
                         }
@@ -164,34 +189,59 @@ class SimpleStackedBarChart extends React.Component{
                         data={this.state.data}
                         keys={["Foreign Born","Foreign Born People of Color"]}
                         indexBy="region"
-                        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+                        margin={{ top: 50, right: 150, bottom: 100, left: 60 }}
                         padding={0.5}
-                        colors={{ scheme: 'nivo' }}
+                        colors={{ scheme: 'paired' }}
                         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
                         axisTop={null}
                         axisRight={null}
                         axisBottom={{
                             tickSize: 5,
                             tickPadding: 5,
-                            tickRotation: 0,
-                            legend: 'County',
+                            tickRotation: -20,
+                            legend: 'Regions',
                             legendPosition: 'middle',
-                            legendOffset: 32
+                            legendOffset: 70
                         }}
                         axisLeft={{
                             tickSize: 5,
                             tickPadding: 5,
                             tickRotation: 0,
-                            legend: 'Percent',
+                            legend: 'Population Percent',
                             legendPosition: 'middle',
                             legendOffset: -40
                         }}
                         labelSkipWidth={12}
                         labelSkipHeight={12}
-                        labelTextColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
-                        enableLabel={false}
-                        motionStiffness={90}
-                        motionDamping={15}
+                        labelTextColor="black"
+                        labelFormat={d=> `${d}` + '%'}
+                        enableLabel={true}
+                        groupMode="grouped"
+                        layout="vertical"
+                        legends={[
+                            {
+                                dataFrom: 'keys',
+                                anchor: 'bottom-right',
+                                direction: 'column',
+                                justify: false,
+                                translateX: 120,
+                                translateY: 0,
+                                itemsSpacing: 2,
+                                itemWidth: 100,
+                                itemHeight: 20,
+                                itemDirection: 'left-to-right',
+                                itemOpacity: 0.85,
+                                symbolSize: 20,
+                                effects: [
+                                    {
+                                        on: 'hover',
+                                        style: {
+                                            itemOpacity: 1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]}
                         tooltipFormat={value => `${Math.abs(value)}` + '% Population'
                         }
                     />
