@@ -445,7 +445,8 @@ class StackedBarChart extends React.Component{
                             tickRotation: 0,
                             legend: 'Population Percentage',
                             legendPosition: 'middle',
-                            legendOffset: 60
+                            legendOffset: 60,
+                            format: v => `${Math.abs(v)}`
                         }}
                         axisLeft={{
                             tickSize: 5,
