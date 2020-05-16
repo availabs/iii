@@ -321,7 +321,7 @@ class StackedBarChart extends React.Component{
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={0.1}
+                        padding={0}
                         colors={{ scheme: 'set2' }}
                         enableGridX={false}
                         enableGridY= {true}
@@ -421,7 +421,7 @@ class StackedBarChart extends React.Component{
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={0.1}
+                        padding={0}
                         colors={{ scheme: 'set2' }}
                         layout="horizontal"
                         groupMode="grouped"
