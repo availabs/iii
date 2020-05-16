@@ -94,7 +94,7 @@ class DataExplorer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            year: get(this.props, `location.oldState.year`, '2014'),
+            year: get(this.props, `location.oldState.year`, '2018'),
             indicator: get(this.props, `location.oldState.indicator`, 'The Effects of Nativity Status'),
             nativity: get(this.props, `location.oldState.nativity`, 'Foreign-Born and Native-Born'),
             education: get(this.props, `location.oldState.education`, 'Bachelor’s Degree or More'),

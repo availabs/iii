@@ -15,7 +15,7 @@ class DataSnapshots extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            year : '2014',
+            year : '2018',
             chartmeasure:'Demographics'
         }
     }

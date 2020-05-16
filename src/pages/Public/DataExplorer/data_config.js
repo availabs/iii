@@ -1,5 +1,5 @@
 const config = {};
-[2014,2015,2016,2017,2018].forEach(year => {
+[2018,2017,2016,2015,2014].forEach(year => {
         config[year] = {
             'The Effects of Nativity Status' : {
                 info: 'Effects of nativity status on economic outcomes of foreign-Born New Yorkers.',
@@ -46,7 +46,7 @@ const config = {};
         };
     });
 
-['Hispanic New Yorkers'].forEach(year => {
+['Hispanic New Yorkers 5 year Estimate(2013-2017)'].forEach(year => {
         config[year] = {
             'The Effects of Nativity Status' : {
                 info: 'Effects of nativity status on economic outcomes of Hispanic New Yorkers.',
@@ -57,13 +57,13 @@ const config = {};
             },
             'The Effects of Race' : {
                 info: 'Effects of nativity status and race on economic outcomes of Hispanic foreign-born New Yorkers.',
-                'Foreign-Born Hispanic people of color and Foreign-Born white Hispanic': {
+                'Foreign-Born Hispanic people of color and Foreign-Born White Hispanic': {
                     'Bachelor’s Degree or More': 'group3',
                     'High School Diploma / Some College': 'group4'
                 }
             },
             'The Effects of Gender' : {
-                info: 'Effects of gender on economic outcomes of Hispanic foreign-born New Yorkers..',
+                info: 'Effects of gender on economic outcomes of Hispanic foreign-born New Yorkers.',
                 'All': {
                     'Bachelor’s Degree or More': 'group9',
                     'High School Diploma / Some College': 'group10'

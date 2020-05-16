@@ -58,11 +58,10 @@ class Public extends React.Component {
     }
 
     render() {
-        console.log('config', config)
         return (
            <div className='container'>
                <Element>
-                   {Object.keys(config).map(year => {
+                   {Object.keys(config).sort(function(a, b){return b-a}).map(year => {
                        return (
                            <ElementBox>
                                <h4>{year}</h4>

@@ -22,7 +22,7 @@ const selectStyle = { border:'none', backgroundColor: '#5a6a92', color: '#fff', 
     margin: '10px'}
 class Dropdown extends React.Component{
     render(){
-        console.log('check',this.props.indicator)
+        console.log('check',this.props.year)
         return (
             <DIV style={{display: 'flex', width:'100vw', justifyContent: 'space-evenly', backgroundColor: '#5a6a92', boxShadow: '0px 1px 5px grey', marginBottom: '7px'}}>
                 {this.props.showYear ?
@@ -39,7 +39,7 @@ class Dropdown extends React.Component{
                         value={this.props.year}
                     >
                         <option key={0} value={'none'} style={{fontSize:'16px'}}>-- Year --</option>
-                        {Object.keys(config).map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)}
+                        {Object.keys(config).sort(function(a, b){return b-a}).map((h,h_i) => <option key={h_i+1} value={h} style={{fontSize:'16px'}}>{h}</option>)}
                     </select> : null}
 
                 {this.props.showIndicator ?
