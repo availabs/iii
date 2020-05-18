@@ -177,21 +177,21 @@ class About extends React.Component {
                                     <li className="nav-item col-sm-3" style={{width:'30%'}}>
                                         <a className={tab === '#about' ? "nav-link active" : "nav-link"}
                                            data-toggle="tab"
-                                           href="/about/#about"
+                                           href={process.env.PUBLIC_URL + "/about/#about"}
                                            style={{textAlign:'center'}}
                                         >About</a>
                                     </li>
                                     <li className="nav-item col-sm-3" style={{width:'30%'}}>
                                         <a className={tab === '#meaning' ? "nav-link active" : "nav-link"}
                                            data-toggle="tab"
-                                           href="/about/#meaning"
+                                           href={process.env.PUBLIC_URL + "/about/#meaning"}
                                            style={{textAlign:'center'}}
                                         > Meaning</a>
                                     </li>
                                     <li className="nav-item col-sm-3" style={{width:'30%'}}>
                                         <a className={tab === '#measure' ? "nav-link active" : "nav-link"}
                                            data-toggle="tab"
-                                           href="/about/#measure"
+                                           href={process.env.PUBLIC_URL + "/about/#measure"}
                                            style={{textAlign:'center'}}
                                         > Measure</a>
                                     </li>
