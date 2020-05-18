@@ -118,13 +118,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {};
 export default [{
     icon: 'os-icon-home',
-    path: '/analysis',
+    path: '/navigator',
     exact: true,
-    name: 'Analysis',
+    name: 'Navigator',
     auth: false,
     mainNav: true,
     breadcrumbs: [
-        {name: 'Analysis', path: '/analysis'}
+        {name: 'Analysis', path: '/navigator'}
     ],
     menuSettings: {
         image: 'none',

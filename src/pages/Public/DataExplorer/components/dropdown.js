@@ -19,10 +19,9 @@ const DIV = styled.div`
             }
 `;
 const selectStyle = { border:'none', backgroundColor: '#5a6a92', color: '#fff', fontSize:'16px',width: '100%', maxWidth: '350px',
-    margin: '10px'}
+    margin: '10px',wordBreak: 'break-word', whiteSpace: 'normal'}
 class Dropdown extends React.Component{
     render(){
-        console.log('check',this.props.year)
         return (
             <DIV style={{display: 'flex', width:'100vw', justifyContent: 'space-evenly', backgroundColor: '#5a6a92', boxShadow: '0px 1px 5px grey', marginBottom: '7px'}}>
                 {this.props.showYear ?

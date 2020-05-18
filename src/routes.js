@@ -8,15 +8,15 @@ import DataSnapshots from './pages/Public/DataSnapshots/'
 import Methodology from './pages/Public/Methodology/'
 import Team from './pages/Public/Team/'
 import NoMatch from './pages/404.js'
-import Analysis from './pages/Public/Analysis'
+import Navigator from './pages/Public/Navigator'
 
 const routes = [
     ...Public,
     ...About,
-    ...Analysis,
+    ...Methodology,
+    ...Navigator,
     ...DataExplorer,
     ...DataSnapshots,
-    ...Methodology,
     ...Team,
     Landing,
     NoMatch
