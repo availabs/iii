@@ -315,7 +315,7 @@ class StackedBarChart extends React.Component{
                         data={this.state.data}
                         margin={{
                             top: 50,
-                            right: 250,
+                            right: 270,
                             bottom: 80,
                             left: 180
                         }}
@@ -415,7 +415,7 @@ class StackedBarChart extends React.Component{
                         data={this.state.data}
                         margin={{
                             top: 50,
-                            right: 250,
+                            right: 270,
                             bottom: 80,
                             left: 180
                         }}
