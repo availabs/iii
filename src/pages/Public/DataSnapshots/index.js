@@ -24,7 +24,6 @@ class DataSnapshots extends React.Component {
         this.setState(Object.assign(this.state, state))
     }
     render() {
-        console.log('this.state',this.state.year)
         return (
             <div className='row' style={{marginTop:'15px'}}>
                 <div className='col-sm-12'>
@@ -54,25 +53,44 @@ class DataSnapshots extends React.Component {
                                 {
                                     ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Unemployment' ?
                                         <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
-                                            <StackedBarChart type={['UnEmp']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]} title={'Unemployment rate (%) of Foreign(English Proficient) and Native Born -'}/>
+                                            <StackedBarChart type={['UnEmp']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]}
+                                                             title={'Unemployment rate (%) of Foreign(English Proficient) and Native Born -'}
+                                                             maxRange ={[50]}
+                                                             minRange={[-50]}
+                                            />
                                             <StackedBarChart type={['UnEmp']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
                                                              year={[this.state.year]}
-                                                             title={'Unemployment rate (%) of Foreign Born people of color(English proficient) and Native Born White Non Hispanic - '}/>
+                                                             title={'Unemployment rate (%) of Foreign Born people of color(English proficient) and Native Born White Non Hispanic - '}
+                                                             maxRange ={[100]}
+                                                             minRange={[-100]}
+                                            />
                                             <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Male","Foreign Born Female"]}
                                                              year={[this.state.year]}
-                                                             title={'Unemployment rate (%) of Foreign Born (English proficient) both Male and Female - '}/>
+                                                             title={'Unemployment rate (%) of Foreign Born (English proficient) both Male and Female - '}
+                                                             maxRange ={[100]}
+                                                             minRange={[-100]}
+                                            />
                                         </div>
                                         :
                                         this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Unemployment' ?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
-                                                                 title={'Unemployment rate (%) of Foreign(English Proficient) Hispanic and Native Born Hispanic New Yorkers-'}/>
+                                                                 title={'Unemployment rate (%) of Foreign(English Proficient) Hispanic and Native Born Hispanic New Yorkers-'}
+                                                                 maxRange ={[100]}
+                                                                 minRange={[-100]}
+                                                />
                                                 <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
                                                                  year={[this.state.year]}
-                                                                 title={'Unemployment rate (%) of Foreign Born Hispanic people of color(English proficient) and Foreign Born White Non Hispanic - '}/>
+                                                                 title={'Unemployment rate (%) of Foreign Born Hispanic people of color(English proficient) and Foreign Born White Non Hispanic - '}
+                                                                 maxRange ={[100]}
+                                                                 minRange={[-100]}
+                                                />
                                                 <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
                                                                  year={[this.state.year]}
-                                                                 title={'Unemployment rate (%) of Foreign Born Hispanic (English proficient) both Male and Female - '}/>
+                                                                 title={'Unemployment rate (%) of Foreign Born Hispanic (English proficient) both Male and Female - '}
+                                                                 maxRange ={[100]}
+                                                                 minRange={[-100]}
+                                                />
                                             </div>
                                             :
                                         null
@@ -123,13 +141,22 @@ class DataSnapshots extends React.Component {
                                         this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Poverty'?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
-                                                                 title={'Poverty rate (%) of Foreign(English Proficient) and Native born Hispanic New Yorkers  - '}/>
+                                                                 title={'Poverty rate (%) of Foreign(English Proficient) and Native born Hispanic New Yorkers  - '}
+                                                                 maxRange ={[100]}
+                                                                 minRange={[-100]}
+                                                />
                                                 <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
                                                                  year={[this.state.year]}
-                                                                 title={'Poverty rate (%) of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}/>
+                                                                 title={'Poverty rate (%) of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}
+                                                                 maxRange ={[100]}
+                                                                 minRange={[-100]}
+                                                />
                                                 <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
                                                                  year={[this.state.year]}
-                                                                 title={'Poverty rate (%) of Foreign(English Proficient) born Hispanic Male and Female  - '}/>
+                                                                 title={'Poverty rate (%) of Foreign(English Proficient) born Hispanic Male and Female  - '}
+                                                                 maxRange ={[100]}
+                                                                 minRange={[-100]}
+                                                />
                                             </div>
                                             :
                                         null

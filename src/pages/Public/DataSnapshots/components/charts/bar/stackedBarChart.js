@@ -418,8 +418,8 @@ class StackedBarChart extends React.Component{
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
                         padding={-0.3}
                         colors={{ scheme: 'set2' }}
-                        maxValue={80}
-                        minValue={-80}
+                        maxValue={this.props.maxRange ? this.props.maxRange[0] : 80}
+                        minValue={this.props.minRange ? this.props.minRange[0] : -80}
                         layout="horizontal"
                         groupMode="grouped"
                         labelTextColor="black"
