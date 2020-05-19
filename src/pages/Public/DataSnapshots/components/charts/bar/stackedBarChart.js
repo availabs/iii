@@ -309,14 +309,14 @@ class StackedBarChart extends React.Component{
                     <ResponsiveBar
                         data={this.state.data}
                         margin={{
-                            top: 50,
+                            top: 100,
                             right: 270,
                             bottom: 80,
                             left: 180
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={0}
+                        padding={-0.3}
                         colors={{ scheme: 'set2' }}
                         enableGridX={false}
                         enableGridY= {true}
@@ -350,7 +350,7 @@ class StackedBarChart extends React.Component{
                         enableLabel={true}
                         axisTop={{
                             tickSize: 0,
-                            tickPadding: 12,
+                            tickPadding: 14,
                             format: v => `${fnum(Math.abs(v))}`
                         }}
 
@@ -362,7 +362,7 @@ class StackedBarChart extends React.Component{
                                 legend: this.props.nativity[1],
                                 legendPosition: 'top-left',
                                 legendOrientation: 'horizontal',
-                                legendOffsetY: -40,
+                                legendOffsetY: -60,
                             },
                             {
                                 axis: 'x',
@@ -371,7 +371,7 @@ class StackedBarChart extends React.Component{
                                 legend: this.props.nativity[0],
                                 legendPosition: 'top-right',
                                 legendOrientation: 'horizontal',
-                                legendOffsetY: -40,
+                                legendOffsetY: -60,
                             },
                         ]}
                         legends={[
@@ -411,12 +411,12 @@ class StackedBarChart extends React.Component{
                         margin={{
                             top: 100,
                             right: 270,
-                            bottom: 100,
+                            bottom: 80,
                             left: 180
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={0}
+                        padding={-0.3}
                         colors={{ scheme: 'set2' }}
                         maxValue={80}
                         minValue={-80}
