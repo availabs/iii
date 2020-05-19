@@ -13,32 +13,32 @@ const config = {};
                 },
             },
             'The Effects of Race' : {
-                info: 'Effects of Nativity status and Race on economic outcomes of Foreign-born New Yorkers.',
+                info: 'Effects of Nativity status and Race on economic outcomes of Foreign-Born New Yorkers.',
                 'Foreign-Born people of color and Foreign-Born White Non-Hispanic': {
                     'Bachelor’s Degree or More': 'group12',
                     'High School Diploma / Some College': 'group13'
                 },
-                'Foreign-Born Women of color and Foreign-born non-hispanic White Women': {
+                'Foreign-Born Women of color and Foreign-Born Non-Hispanic White Women': {
                     'Bachelor’s Degree or More': 'group7',
                     'High School Diploma / Some College': 'group8'
                 },
             },
             'The Effects of Race and Nativity' : {
-                info: 'Effects of Nativity status and Race on economic outcomes of Foreign-born New Yorkers.',
+                info: 'Effects of Nativity status and Race on economic outcomes of Foreign-Born New Yorkers.',
                 'Foreign-Born people of color and Native-Born Non-Hispanic White': {
                     'Bachelor’s Degree or More': 'group3',
                     'High School Diploma / Some College': 'group4'
                 }
             },
             'The Effects of Gender' : {
-                info: 'Effects of Nativity status on economic outcomes of Foreign-born Women.',
+                info: 'Effects of Nativity status on economic outcomes of Foreign-Born Women.',
                 'All': {
                     'Bachelor’s Degree or More': 'group9',
                     'High School Diploma / Some College': 'group10'
                 }
             },
             'The Effects of Low English Proficiency and Educational Attainment' : {
-                info: 'Measures economic outcomes for the Foreign-orn with no high school diploma and low English proficiency.',
+                info: 'Measures economic outcomes for the Foreign-Born with no high school diploma and low English proficiency.',
                 'All': {
                     'All': 'group11'
                 }
@@ -56,14 +56,14 @@ const config = {};
                 }
             },
             'The Effects of Race' : {
-                info: 'Effects of Nativity status and Race on economic outcomes of Hispanic Foreign-born New Yorkers.',
+                info: 'Effects of Nativity status and Race on economic outcomes of Hispanic Foreign-Born New Yorkers.',
                 'Foreign-Born Hispanic people of color and Foreign-Born White Hispanic': {
                     'Bachelor’s Degree or More': 'group3',
                     'High School Diploma / Some College': 'group4'
                 }
             },
             'The Effects of Gender' : {
-                info: 'Effects of gender on economic outcomes of Hispanic Foreign-born New Yorkers.',
+                info: 'Effects of gender on economic outcomes of Hispanic Foreign-Born New Yorkers.',
                 'All': {
                     'Bachelor’s Degree or More': 'group9',
                     'High School Diploma / Some College': 'group10'
