@@ -343,8 +343,8 @@ class StackedBarChart extends React.Component{
                         labelSkipWidth={0}
                         labelSkipHeight={0}
                         labelFormat={d=> `${fnum(Math.abs(d))}`}
-                        maxValue={350000}
-                        minValue={-350000}
+                        maxValue={this.props.maxRange ? this.props.maxRange[0] : 350000}
+                        minValue={this.props.minRange ? this.props.minRange[0] : -350000}
                         enableGridX={false}
                         enableGridY={true}
                         enableLabel={true}

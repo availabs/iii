@@ -10,6 +10,7 @@ import SimpleStackedBarChart from "./components/charts/bar/simpleStackedBarChart
 import {TEXT} from "../theme/componentsNew";
 import get from "lodash.get";
 import config from "../DataExplorer/data_config";
+import {ResponsiveBar} from "@nivo/bar";
 class DataSnapshots extends React.Component {
 
     constructor(props) {
@@ -112,13 +113,22 @@ class DataSnapshots extends React.Component {
                                         this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Income'?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
-                                                                 title={'Income level of Foreign(English Proficient) born Hispanic and Native born Hispanic- '}/>
+                                                                 title={'Income level of Foreign(English Proficient) born Hispanic and Native born Hispanic- '}
+                                                                 maxRange={[150000]}
+                                                                 minRange={[-150000]}
+                                                />
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
                                                                  year={[this.state.year]}
-                                                                 title={'Income level of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}/>
+                                                                 title={'Income level of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}
+                                                                 maxRange={[150000]}
+                                                                 minRange={[-150000]}
+                                                />
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
                                                                  year={[this.state.year]}
-                                                                 title={'Income level of Foreign(English Proficient) born Hispanic Male and Female  - '}/>
+                                                                 title={'Income level of Foreign(English Proficient) born Hispanic Male and Female  - '}
+                                                                 maxRange={[150000]}
+                                                                 minRange={[-150000]}
+                                                />
                                             </div>
                                             :
                                         null
