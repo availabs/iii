@@ -294,11 +294,6 @@ class StackedBarChart extends React.Component{
             }
 
         }
-
-
-
-
-
     }
 
 
@@ -414,23 +409,24 @@ class StackedBarChart extends React.Component{
                     <ResponsiveBar
                         data={this.state.data}
                         margin={{
-                            top: 50,
+                            top: 100,
                             right: 270,
-                            bottom: 80,
+                            bottom: 100,
                             left: 180
                         }}
                         indexBy="region"
                         keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
                         padding={0}
                         colors={{ scheme: 'set2' }}
+                        maxValue={80}
+                        minValue={-80}
                         layout="horizontal"
                         groupMode="grouped"
                         labelTextColor="black"
                         labelSkipWidth={0}
                         labelSkipHeight={0}
                         labelFormat={d=> `${Math.abs(d)}` + '%'}
-                        maxValue={80}
-                        minValue={-80}
+
                         enableGridX={true}
                         enableGridY={false}
                         enableLabel={true}

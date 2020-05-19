@@ -5,8 +5,7 @@ import * as d3 from 'd3';
 import { connect } from 'react-redux';
 import ElementBox from "../../../../../../components/light-admin/containers/ElementBox";
 import get from "lodash.get";
-
-
+import { fnum } from "utils/sheldusUtils"
 const regions = ['Western NY', 'Southern Tier', 'North Country', 'New York City', 'Mohawk Valley', 'Mid-Hudson', 'Long Island',
     'Finger Lakes', 'Central NY', 'Capital Region'];
 
@@ -33,7 +32,7 @@ class GroupedTripleStackedBarChart extends React.Component{
             d =  d[0].map(f => {
                 Object.keys(f).forEach(fKey => {
                     if (typeof f[fKey] === 'number'){
-                        f[fKey] = get(f, fKey, 0).toFixed(0);
+                        f[fKey] = get(f, fKey, 0);
                     }
                 })
                 return f;
@@ -84,16 +83,16 @@ class GroupedTripleStackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_m']),
-                                    "High School Diploma some college foreign":parseFloat(item['HS_m']),
-                                    "Without High School diploma foreign":parseFloat(item['HSINC_m'])
+                                    "College Degree or better foreign":(item['BABS_m']),
+                                    "High School Diploma some college foreign":(item['HS_m']),
+                                    "Without High School diploma foreign":(item['HSINC_m'])
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_m']),
-                                    "High School Diploma some college foreign":parseFloat(item['HS_m']),
-                                    "Without High School diploma foreign":parseFloat(item['HSINC_m'])
+                                    "College Degree or better foreign":(item['BABS_m']),
+                                    "High School Diploma some college foreign":(item['HS_m']),
+                                    "Without High School diploma foreign":(item['HSINC_m'])
 
                                 })
                             }
@@ -102,15 +101,15 @@ class GroupedTripleStackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_f']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_f']),
-                                    "Without High School diploma native":-parseFloat(item['HSINC_f'])
+                                    "College Degree or better native":-(item['BABS_f']),
+                                    "High School Diploma some college native":-(item['HS_f']),
+                                    "Without High School diploma native":-(item['HSINC_f'])
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_f']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_f']) ,
-                                    "Without High School diploma native":-parseFloat(item['HSINC_f'])
+                                    "College Degree or better native":-(item['BABS_f']),
+                                    "High School Diploma some college native":-(item['HS_f']) ,
+                                    "Without High School diploma native":-(item['HSINC_f'])
                                 })
                             }
                         })
@@ -140,16 +139,16 @@ class GroupedTripleStackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_mf_t']),
-                                    "High School Diploma some college foreign":parseFloat(item['HS_mf_t']),
-                                    "Without High School diploma foreign":parseFloat(item['HSINC_mf_t'])
+                                    "College Degree or better foreign":(item['BABS_mf_t']),
+                                    "High School Diploma some college foreign":(item['HS_mf_t']),
+                                    "Without High School diploma foreign":(item['HSINC_mf_t'])
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_mf_t']),
-                                    "High School Diploma some college foreign":parseFloat(item['HS_mf_t']),
-                                    "Without High School diploma foreign":parseFloat(item['HSINC_mf_t'])
+                                    "College Degree or better foreign":(item['BABS_mf_t']),
+                                    "High School Diploma some college foreign":(item['HS_mf_t']),
+                                    "Without High School diploma foreign":(item['HSINC_mf_t'])
 
                                 })
                             }
@@ -158,15 +157,15 @@ class GroupedTripleStackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_mf_t']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_mf_t']),
-                                    "Without High School diploma native":-parseFloat(item['HSINC_mf_t'])
+                                    "College Degree or better native":-(item['BABS_mf_t']),
+                                    "High School Diploma some college native":-(item['HS_mf_t']),
+                                    "Without High School diploma native":-(item['HSINC_mf_t'])
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_mf_t']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_mf_t']) ,
-                                    "Without High School diploma foreign":-parseFloat(item['HSINC_mf_t'])
+                                    "College Degree or better native":-(item['BABS_mf_t']),
+                                    "High School Diploma some college native":-(item['HS_mf_t']) ,
+                                    "Without High School diploma foreign":-(item['HSINC_mf_t'])
                                 })
                             }
                         })
@@ -218,7 +217,7 @@ class GroupedTripleStackedBarChart extends React.Component{
                         labelTextColor="black"
                         labelSkipWidth={0}
                         labelSkipHeight={0}
-                        labelFormat={d=> `${Math.abs(d)}` + '%'}
+                        labelFormat={d=> `${Math.abs(d).toFixed(0)}` + '%'}
                         enableGridX={true}
                         enableGridY={false}
                         enableLabel={true}
