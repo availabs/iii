@@ -49,7 +49,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="all-wrapper solid-bg-all">
-          <BrowserRouter basename={'/womeningov/iii/newPortal/build/'}>
+          <BrowserRouter basename={'/womeningov/iii/'}>
             <Switch>
               {
                   Routes.routes.map((route, i) => {
