@@ -62,16 +62,17 @@ class PieChart extends React.Component{
 
                     FB_ALL_data.forEach((item,i) =>{
                         if(regions.includes(item['puma'])){
+                            console.log('check',item['Percentage_mf_t'])
                             axis_data.push({
-                                "region":item['puma'],
-                                "id": item['puma'],
+                                "region": parseFloat(item['Percentage_mf_t']) < 1 ? `${item['puma']}(*no data)`: item['puma'],
+                                "id": parseFloat(item['Percentage_mf_t']) < 1 ? `${item['puma']}(*no data)`: item['puma'],
                                 "label": item['puma'],
-                                "value": item['Percentage_mf_t'],
+                                "value": parseFloat(item['Percentage_mf_t']) || 0,
                                 "color": "hsl(221, 70%, 50%)"
                             })
                         }
                     })
-
+                    console.log('data',axis_data)
                     return (axis_data)
                 }).catch(function(err) {
                     // handle error here
@@ -86,10 +87,10 @@ class PieChart extends React.Component{
                     FB_hispanic_POC_data.forEach((item,i) =>{
                         if(regions.includes(item['puma'])){
                             axis_data.push({
-                                "region":item['puma'],
-                                "id": item['puma'],
+                                "region": parseFloat(item['Percentage_mf_t']) < 1 ? `${item['puma']}(*no data)`: item['puma'],
+                                "id": parseFloat(item['Percentage_mf_t']) < 1 ? `${item['puma']}(*no data)`: item['puma'],
                                 "label": item['puma'],
-                                "value": item['Percentage_mf_t'],
+                                "value": parseFloat(item['Percentage_mf_t']) || 0,
                                 "color": "hsl(221, 70%, 50%)"
                             })
                         }
@@ -112,6 +113,7 @@ class PieChart extends React.Component{
             height: '70vh',
             width: '95vw'
         };
+        console.log('state',this.state.data)
         return (
             <ElementBox style={style}>
                 <h6 style={{textAlign:'center'}}>{this.props.title}{this.props.year}</h6>
@@ -124,7 +126,7 @@ class PieChart extends React.Component{
                     labelSkipWidth={12}
                     labelSkipHeight={0}
                     labelTextColor="black"
-                    labelFormat={d=> `${d}` + '%'}
+                    labelFormat={d =>`${d}` + '%'}
                     legend={[
                         {
                             anchor: 'bottom',
