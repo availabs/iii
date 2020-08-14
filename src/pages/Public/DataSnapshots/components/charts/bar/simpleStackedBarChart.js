@@ -189,7 +189,7 @@ class SimpleStackedBarChart extends React.Component{
                         data={this.state.data}
                         keys={["Foreign Born","Foreign Born People of Color"]}
                         indexBy="region"
-                        margin={{ top: 50, right: 150, bottom: 100, left: 60 }}
+                        margin={{ top: 50, right: 200, bottom: 100, left: 100 }}
                         padding={0.5}
                         colors={{ scheme: 'paired' }}
                         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
