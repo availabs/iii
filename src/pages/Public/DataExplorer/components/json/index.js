@@ -11,5 +11,5 @@ export default {
     2016 : year_2016,
     2017 : year_2017,
     2018 : year_2018,
-    'HISPANIC New Yorkers 5 year Estimate(2013-2017)' : hisp_ny_2016,
+    'HISPANIC New Yorkers 5 year Estimate(2012-2016)' : hisp_ny_2016,
 }

@@ -73,7 +73,7 @@ class DataSnapshots extends React.Component {
                                             />
                                         </div>
                                         :
-                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Unemployment' ?
+                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === 'Unemployment' ?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['UnEmp']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
                                                                  title={'Unemployment rate (%) of Foreign(English Proficient) Hispanic and Native Born Hispanic New Yorkers-'}
@@ -110,7 +110,7 @@ class DataSnapshots extends React.Component {
                                                              title={'Income level of Foreign(English Proficient) born Male and Female  - '}/>
                                         </div>
                                         :
-                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Income'?
+                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === 'Income'?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
                                                                  title={'Income level of Foreign(English Proficient) born Hispanic and Native born Hispanic- '}
@@ -148,7 +148,7 @@ class DataSnapshots extends React.Component {
                                                              title={'Poverty rate (%) of Foreign(English Proficient) born Male and Female  - '}/>
                                         </div>
                                         :
-                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Poverty'?
+                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === 'Poverty'?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['Poverty']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
                                                                  title={'Poverty rate (%) of Foreign(English Proficient) and Native born Hispanic New Yorkers  - '}
@@ -188,7 +188,7 @@ class DataSnapshots extends React.Component {
                                                                           title={'% of Educational Attainment of  Foreign(English Proficient) born Male and Female  - '}/>
                                         </div>
                                         :
-                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === "Educational Attainment" ?
+                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === "Educational Attainment" ?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <GroupedTripleStackedBarChart
                                                     type={['Edu_percent']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
@@ -216,7 +216,7 @@ class DataSnapshots extends React.Component {
                                             />
                                         </div>
                                         :
-                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'Demographics' ?
+                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === 'Demographics' ?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <div>
                                                     <BarChart
@@ -254,7 +254,7 @@ class DataSnapshots extends React.Component {
                                             />
                                         </div>
                                         :
-                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2013-2017)' && this.state.chartmeasure === 'English Proficiency' ?
+                                        this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === 'English Proficiency' ?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <SimpleStackedBarChart
                                                     type={['Eng_Prof']} year ={[this.state.year]}
