@@ -97,7 +97,7 @@ class SimpleStackedBarChart extends React.Component{
                         if(regions.includes(item['puma'])){
                             axis_data_foreign.push({
                                 "region":item['puma'],
-                                "Foreign Born":parseFloat(item['ENG_prof_mf_t']),
+                                "Foreign Born All":parseFloat(item['ENG_prof_mf_t']),
                                 "Foreign Born People of Color":parseFloat(NB_ALL_data[i]['ENG_prof_mf_t']),
                             })
 
@@ -187,7 +187,7 @@ class SimpleStackedBarChart extends React.Component{
                     :
                     <ResponsiveBar
                         data={this.state.data}
-                        keys={["Foreign Born","Foreign Born People of Color"]}
+                        keys={["Foreign Born All","Foreign Born People of Color"]}
                         indexBy="region"
                         margin={{ top: 50, right: 200, bottom: 100, left: 100 }}
                         padding={0.5}
