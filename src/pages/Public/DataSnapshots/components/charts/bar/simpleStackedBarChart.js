@@ -150,7 +150,7 @@ class SimpleStackedBarChart extends React.Component{
                             legendOffset: -40
                         }}
                         labelSkipWidth={12}
-                        labelSkipHeight={12}
+                        labelSkipHeight={0}
                         labelTextColor="black"
                         labelFormat={d=> `${d}` + '%'}
                         enableLabel={true}
@@ -212,7 +212,7 @@ class SimpleStackedBarChart extends React.Component{
                             legendOffset: -40
                         }}
                         labelSkipWidth={12}
-                        labelSkipHeight={12}
+                        labelSkipHeight={0}
                         labelTextColor="black"
                         labelFormat={d=> `${d}` + '%'}
                         enableLabel={true}

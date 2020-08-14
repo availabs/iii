@@ -122,7 +122,7 @@ class PieChart extends React.Component{
                     enablLabels={true}
                     padding = {0.4}
                     labelSkipWidth={12}
-                    labelSkipHeight={12}
+                    labelSkipHeight={0}
                     labelTextColor="black"
                     labelFormat={d=> `${d}` + '%'}
                     legend={[
