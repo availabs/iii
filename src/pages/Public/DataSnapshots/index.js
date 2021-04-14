@@ -101,33 +101,42 @@ class DataSnapshots extends React.Component {
                                     ['2014','2015','2016','2017','2018'].includes(this.state.year) && this.state.chartmeasure === 'Income' ?
                                         <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                             <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]}
-                                                             title={'Income level of Foreign(English Proficient) and Native born - '}/>
+                                                             title={'Income level of Foreign(English Proficient) and Native born - '}
+                                                             maxRange={[100000]}
+                                                             minRange={[-100000]}
+                                            />
                                             <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
                                                              year={[this.state.year]}
-                                                             title={'Income level of Foreign born prople of color(English Proficient) and Native born white non hispanic - '}/>
+                                                             title={'Income level of Foreign born prople of color(English Proficient) and Native born white non hispanic - '}
+                                                             maxRange={[100000]}
+                                                             minRange={[-100000]}
+                                            />
                                             <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Male","Foreign Born Female"]}
                                                              year={[this.state.year]}
-                                                             title={'Income level of Foreign(English Proficient) born Male and Female  - '}/>
+                                                             title={'Income level of Foreign(English Proficient) born Male and Female  - '}
+                                                             maxRange={[100000]}
+                                                             minRange={[-100000]}
+                                            />
                                         </div>
                                         :
                                         this.state.year === 'HISPANIC New Yorkers 5 year Estimate(2012-2016)' && this.state.chartmeasure === 'Income'?
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
                                                                  title={'Income level of Foreign(English Proficient) born Hispanic and Native born Hispanic- '}
-                                                                 maxRange={[150000]}
-                                                                 minRange={[-150000]}
+                                                                 maxRange={[80000]}
+                                                                 minRange={[-80000]}
                                                 />
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
                                                                  year={[this.state.year]}
                                                                  title={'Income level of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}
-                                                                 maxRange={[150000]}
-                                                                 minRange={[-150000]}
+                                                                 maxRange={[80000]}
+                                                                 minRange={[-80000]}
                                                 />
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
                                                                  year={[this.state.year]}
                                                                  title={'Income level of Foreign(English Proficient) born Hispanic Male and Female  - '}
-                                                                 maxRange={[150000]}
-                                                                 minRange={[-150000]}
+                                                                 maxRange={[80000]}
+                                                                 minRange={[-80000]}
                                                 />
                                             </div>
                                             :

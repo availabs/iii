@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2014/demographics/FB_ALL/FB_ALL_total_population_percent.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2014/income/FB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2014/income/FB_POC/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2014/income/NB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2014/income/NB_WNH/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2015/income/FB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2015/income/FB_POC/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2015/income/NB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2015/income/NB_WNH/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2016/income/FB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2016/income/FB_POC/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2016/income/NB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2016/income/NB_WNH/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2017/income/FB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2017/income/FB_POC/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2017/income/NB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2017/income/NB_WNH/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2018/income/FB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2018/income/FB_POC/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2018/income/NB_ALL/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/2018/income/NB_WNH/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/HISP_2016/income/FB_Hispanic/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/HISP_2016/income/FB_Hispanic_POC/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/HISP_2016/income/FB_WNH/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/src/pages/Public/DataSnapshots/components/csv/HISP_2016/income/NB_Hispanic/Income_level_FT_Workers.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
