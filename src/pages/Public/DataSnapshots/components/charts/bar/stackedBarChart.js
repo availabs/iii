@@ -96,14 +96,14 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m']),
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m']),
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m']),
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m']),
 
                                 })
                             }
@@ -112,13 +112,13 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f'])/regionMappings[item['puma']].length,
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f'])/regionMappings[item['puma']].length,
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_m'])/regionMappings[item['puma']].length,
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_m'])/regionMappings[item['puma']].length ,
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
                                 })
                             }
                         })
@@ -201,14 +201,14 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
 
                                 })
                             }
@@ -217,13 +217,13 @@ class StackedBarChart extends React.Component{
                             if(regions.includes(item['puma'])){
                                 axis_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']),
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
-                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length,
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t'])/regionMappings[item['puma']].length ,
+                                    "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']) ,
                                 })
                             }
                         })

@@ -102,20 +102,20 @@ class DataSnapshots extends React.Component {
                                         <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                             <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born","Native Born"]} year={[this.state.year]}
                                                              title={'Income level of Foreign(English Proficient) and Native born - '}
-                                                             maxRange={[100000]}
-                                                             minRange={[-100000]}
+                                                             maxRange={[200000]}
+                                                             minRange={[-200000]}
                                             />
                                             <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born People of Color","Native Born White Non Hispanic"]}
                                                              year={[this.state.year]}
                                                              title={'Income level of Foreign born prople of color(English Proficient) and Native born white non hispanic - '}
-                                                             maxRange={[100000]}
-                                                             minRange={[-100000]}
+                                                             maxRange={[200000]}
+                                                             minRange={[-200000]}
                                             />
                                             <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Male","Foreign Born Female"]}
                                                              year={[this.state.year]}
                                                              title={'Income level of Foreign(English Proficient) born Male and Female  - '}
-                                                             maxRange={[100000]}
-                                                             minRange={[-100000]}
+                                                             maxRange={[200000]}
+                                                             minRange={[-200000]}
                                             />
                                         </div>
                                         :
@@ -123,20 +123,20 @@ class DataSnapshots extends React.Component {
                                             <div style = {{display:'flex',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic","Native Born Hispanic"]} year={[this.state.year]}
                                                                  title={'Income level of Foreign(English Proficient) born Hispanic and Native born Hispanic- '}
-                                                                 maxRange={[80000]}
-                                                                 minRange={[-80000]}
+                                                                 maxRange={[150000]}
+                                                                 minRange={[-150000]}
                                                 />
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic People of Color","Foreign Born White Non Hispanic"]}
                                                                  year={[this.state.year]}
                                                                  title={'Income level of Foreign born Hispanic people of color(English Proficient) and Foreign born white non hispanic - '}
-                                                                 maxRange={[80000]}
-                                                                 minRange={[-80000]}
+                                                                 maxRange={[150000]}
+                                                                 minRange={[-150000]}
                                                 />
                                                 <StackedBarChart type={['Avg_PINCP']} nativity={["Foreign Born Hispanic Male","Foreign Born Hispanic Female"]}
                                                                  year={[this.state.year]}
                                                                  title={'Income level of Foreign(English Proficient) born Hispanic Male and Female  - '}
-                                                                 maxRange={[80000]}
-                                                                 minRange={[-80000]}
+                                                                 maxRange={[150000]}
+                                                                 minRange={[-150000]}
                                                 />
                                             </div>
                                             :
