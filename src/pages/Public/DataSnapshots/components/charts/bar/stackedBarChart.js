@@ -95,15 +95,24 @@ class StackedBarChart extends React.Component{
                         MALE_DATA.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
-                                    "region":item['puma'],
+                                    "region":item['puma']+ ' ',
                                     "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m']),
 
                                 })
                                 stack_data_foreign.push({
-                                    "region":item['puma'],
+                                    "region":item['puma']+ ' ',
                                     "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_m']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_m']),
+
+                                })
+
+                                axis_data_foreign.push({
+                                    "region":item['puma'] ,
+                                    "High School Diploma some college foreign":parseFloat(item['HS_Avg_PINCP_m']),
+
+                                })
+                                stack_data_foreign.push({
+                                    "region":item['puma'] ,
+                                    "High School Diploma some college foreign":parseFloat(item['HS_Avg_PINCP_m']),
 
                                 })
                             }
@@ -113,11 +122,18 @@ class StackedBarChart extends React.Component{
                                 axis_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_f']),
+                                })
+
+                                axis_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
+                                })
+                                stack_data_native.push({
+                                    "region":item['puma'] + ' ',
                                     "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_f']),
                                 })
                             }
@@ -144,15 +160,28 @@ class StackedBarChart extends React.Component{
                         MALE_DATA.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
-                                    "region":item['puma'],
+                                    "region":item['puma'] + ' ',
                                     "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) > 1 ? parseFloat(item['BABS_'+type+'_M']) || 0 : parseFloat(item['BABS_'+type+'_M']) * 100 || 0,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']) > 1 ? parseFloat(item['HS_'+type+'_M']) || 0 : parseFloat(item['HS_'+type+'_M']) * 100 || 0,
+                                    // "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_M']) > 1 ? parseFloat(item['HS_'+type+'_M']) || 0 : parseFloat(item['HS_'+type+'_M']) * 100 || 0,
+
+                                })
+                                stack_data_foreign.push({
+                                    "region":item['puma'] + ' ',
+                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) > 1 ? parseFloat(item['BABS_'+type+'_M']) || 0 : parseFloat(item['BABS_'+type+'_M']) * 100 || 0,
+                                    // "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_M']) > 1 ? parseFloat(item['HS_'+type+'_M']) || 0 : parseFloat(item['HS_'+type+'_M']) * 100|| 0,
+
+                                })
+
+                                axis_data_foreign.push({
+                                    "region":item['puma'],
+                                    // "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) > 1 ? parseFloat(item['BABS_'+type+'_M']) || 0 : parseFloat(item['BABS_'+type+'_M']) * 100 || 0,
+                                    "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_M']) > 1 ? parseFloat(item['HS_'+type+'_M']) || 0 : parseFloat(item['HS_'+type+'_M']) * 100 || 0,
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) > 1 ? parseFloat(item['BABS_'+type+'_M']) || 0 : parseFloat(item['BABS_'+type+'_M']) * 100 || 0,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_M']) > 1 ? parseFloat(item['HS_'+type+'_M']) || 0 : parseFloat(item['HS_'+type+'_M']) * 100|| 0,
+                                    // "College Degree or better foreign":parseFloat(item['BABS_'+type+'_M']) > 1 ? parseFloat(item['BABS_'+type+'_M']) || 0 : parseFloat(item['BABS_'+type+'_M']) * 100 || 0,
+                                    "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_M']) > 1 ? parseFloat(item['HS_'+type+'_M']) || 0 : parseFloat(item['HS_'+type+'_M']) * 100|| 0,
 
                                 })
 
@@ -163,11 +192,22 @@ class StackedBarChart extends React.Component{
                                 axis_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":parseFloat(item['BABS_'+type+'_F']) > 1 ? -parseFloat(item['BABS_'+type+'_F']) || 0 : -parseFloat(item['BABS_'+type+'_F']) * 100 || 0,
-                                    "High School Diploma some college native":parseFloat(item['HS_'+type+'_F']) > 1 ? -parseFloat(item['HS_'+type+'_F']) || 0 : -parseFloat(item['HS_'+type+'_F']) * 100 || 0,
+                                    // "High School Diploma some college native":parseFloat(item['HS_'+type+'_F']) > 1 ? -parseFloat(item['HS_'+type+'_F']) || 0 : -parseFloat(item['HS_'+type+'_F']) * 100 || 0,
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":parseFloat(item['BABS_'+type+'_F']) > 1 ? -parseFloat(item['BABS_'+type+'_F']) || 0 : -parseFloat(item['BABS_'+type+'_F']) * 100 || 0,
+                                    // "High School Diploma some college native":parseFloat(item['HS_'+type+'_F']) > 1 ? -parseFloat(item['HS_'+type+'_F']) || 0 : -parseFloat(item['HS_'+type+'_F']) * 100 || 0,
+                                })
+
+                                axis_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    // "College Degree or better native":parseFloat(item['BABS_'+type+'_F']) > 1 ? -parseFloat(item['BABS_'+type+'_F']) || 0 : -parseFloat(item['BABS_'+type+'_F']) * 100 || 0,
+                                    "High School Diploma some college native":parseFloat(item['HS_'+type+'_F']) > 1 ? -parseFloat(item['HS_'+type+'_F']) || 0 : -parseFloat(item['HS_'+type+'_F']) * 100 || 0,
+                                })
+                                stack_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    // "College Degree or better native":parseFloat(item['BABS_'+type+'_F']) > 1 ? -parseFloat(item['BABS_'+type+'_F']) || 0 : -parseFloat(item['BABS_'+type+'_F']) * 100 || 0,
                                     "High School Diploma some college native":parseFloat(item['HS_'+type+'_F']) > 1 ? -parseFloat(item['HS_'+type+'_F']) || 0 : -parseFloat(item['HS_'+type+'_F']) * 100 || 0,
                                 })
 
@@ -200,15 +240,28 @@ class StackedBarChart extends React.Component{
                         FB_ALL_data.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
-                                    "region":item['puma'],
+                                    "region":item['puma'] + ' ',
                                     "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                    // "High School Diploma some college foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
+
+                                })
+                                stack_data_foreign.push({
+                                    "region":item['puma'] + ' ',
+                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    // "High School Diploma some college foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
+
+                                })
+
+                                axis_data_foreign.push({
+                                    "region":item['puma'],
+                                    // "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High School Diploma some college foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                    // "College Degree or better foreign":parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High School Diploma some college foreign":parseFloat(item['HS_Avg_PINCP_mf_t']),
 
                                 })
                             }
@@ -218,11 +271,22 @@ class StackedBarChart extends React.Component{
                                 axis_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
-                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                    // "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']),
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    // "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']) ,
+                                })
+
+                                axis_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    // "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
+                                    "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']),
+                                })
+                                stack_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    // "College Degree or better native":-parseFloat(item['BABS_Avg_PINCP_mf_t']),
                                     "High School Diploma some college native":-parseFloat(item['HS_Avg_PINCP_mf_t']) ,
                                 })
                             }
@@ -248,15 +312,28 @@ class StackedBarChart extends React.Component{
                         FB_ALL_data.forEach((item,i) =>{
                             if(regions.includes(item['puma'])){
                                 axis_data_foreign.push({
-                                    "region":item['puma'],
+                                    "region":item['puma'] + ' ',
                                     "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) > 1 ? parseFloat(item['BABS_'+type+'_Total']) || 0 : parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']) > 1 ?parseFloat(item['HS_'+type+'_Total']) || 0 : parseFloat(item['HS_'+type+'_Total'])  * 100 || 0,
+                                    // "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_Total']) > 1 ?parseFloat(item['HS_'+type+'_Total']) || 0 : parseFloat(item['HS_'+type+'_Total'])  * 100 || 0,
+
+                                })
+                                stack_data_foreign.push({
+                                    "region":item['puma'] + ' ',
+                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) > 1 ? parseFloat(item['BABS_'+type+'_Total']) || 0 : parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
+                                    // "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_Total']) > 1 ? parseFloat(item['HS_'+type+'_Total']) ||0 : parseFloat(item['HS_'+type+'_Total']) * 100  ||0,
+
+                                })
+
+                                axis_data_foreign.push({
+                                    "region":item['puma'],
+                                    // "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) > 1 ? parseFloat(item['BABS_'+type+'_Total']) || 0 : parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
+                                    "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_Total']) > 1 ?parseFloat(item['HS_'+type+'_Total']) || 0 : parseFloat(item['HS_'+type+'_Total'])  * 100 || 0,
 
                                 })
                                 stack_data_foreign.push({
                                     "region":item['puma'],
-                                    "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) > 1 ? parseFloat(item['BABS_'+type+'_Total']) || 0 : parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
-                                    "High_School_Diploma_some_college_foreign":parseFloat(item['HS_'+type+'_Total']) > 1 ? parseFloat(item['HS_'+type+'_Total']) ||0 : parseFloat(item['HS_'+type+'_Total']) * 100  ||0,
+                                    // "College Degree or better foreign":parseFloat(item['BABS_'+type+'_Total']) > 1 ? parseFloat(item['BABS_'+type+'_Total']) || 0 : parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
+                                    "High School Diploma some college foreign":parseFloat(item['HS_'+type+'_Total']) > 1 ? parseFloat(item['HS_'+type+'_Total']) ||0 : parseFloat(item['HS_'+type+'_Total']) * 100  ||0,
 
                                 })
 
@@ -267,11 +344,22 @@ class StackedBarChart extends React.Component{
                                 axis_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":parseFloat(item['BABS_'+type+'_Total']) > 1 ? -parseFloat(item['BABS_'+type+'_Total']) || 0 : -parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
-                                    "High School Diploma some college native":parseFloat(item['HS_'+type+'_Total']) > 1 ? -parseFloat(item['HS_'+type+'_Total']) || 0 : -parseFloat(item['HS_'+type+'_Total']) * 100 || 0,
+                                    // "High School Diploma some college native":parseFloat(item['HS_'+type+'_Total']) > 1 ? -parseFloat(item['HS_'+type+'_Total']) || 0 : -parseFloat(item['HS_'+type+'_Total']) * 100 || 0,
                                 })
                                 stack_data_native.push({
                                     "region":item['puma'],
                                     "College Degree or better native":parseFloat(item['BABS_'+type+'_Total']) > 1 ? -parseFloat(item['BABS_'+type+'_Total']) || 0 : -parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
+                                    // "High School Diploma some college native":parseFloat(item['HS_'+type+'_Total']) > 1 ? -parseFloat(item['HS_'+type+'_Total']) || 0 : -parseFloat(item['HS_'+type+'_Total']) * 100 || 0,
+                                })
+
+                                axis_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    // "College Degree or better native":parseFloat(item['BABS_'+type+'_Total']) > 1 ? -parseFloat(item['BABS_'+type+'_Total']) || 0 : -parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
+                                    "High School Diploma some college native":parseFloat(item['HS_'+type+'_Total']) > 1 ? -parseFloat(item['HS_'+type+'_Total']) || 0 : -parseFloat(item['HS_'+type+'_Total']) * 100 || 0,
+                                })
+                                stack_data_native.push({
+                                    "region":item['puma'] + ' ',
+                                    // "College Degree or better native":parseFloat(item['BABS_'+type+'_Total']) > 1 ? -parseFloat(item['BABS_'+type+'_Total']) || 0 : -parseFloat(item['BABS_'+type+'_Total']) * 100 || 0,
                                     "High School Diploma some college native":parseFloat(item['HS_'+type+'_Total']) > 1 ? -parseFloat(item['HS_'+type+'_Total']) || 0 : -parseFloat(item['HS_'+type+'_Total']) * 100 || 0,
                                 })
 
@@ -315,8 +403,8 @@ class StackedBarChart extends React.Component{
                             left: 180
                         }}
                         indexBy="region"
-                        keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={-0.3}
+                        keys={["College Degree or better foreign", "High School Diploma some college foreign", "College Degree or better native", "High School Diploma some college native"]}
+                        padding={0}
                         colors={{ scheme: 'set2' }}
                         enableGridX={false}
                         enableGridY= {true}
@@ -338,7 +426,7 @@ class StackedBarChart extends React.Component{
                             legendOffset: -110
                         }}
                         layout="horizontal"
-                        groupMode="grouped"
+                        groupMode="stacked"
                         labelTextColor="black"
                         labelSkipWidth={0}
                         labelSkipHeight={0}
@@ -415,13 +503,13 @@ class StackedBarChart extends React.Component{
                             left: 180
                         }}
                         indexBy="region"
-                        keys={["College Degree or better foreign", "High_School_Diploma_some_college_foreign", "College Degree or better native", "High School Diploma some college native"]}
-                        padding={-0.3}
+                        keys={["College Degree or better foreign", "High School Diploma some college foreign", "College Degree or better native", "High School Diploma some college native"]}
+                        padding={0}
                         colors={{ scheme: 'set2' }}
                         maxValue={this.props.maxRange ? this.props.maxRange[0] : 80}
                         minValue={this.props.minRange ? this.props.minRange[0] : -80}
                         layout="horizontal"
-                        groupMode="grouped"
+                        groupMode="stacked"
                         labelTextColor="black"
                         labelSkipWidth={0}
                         labelSkipHeight={0}
